@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="cpp,linux,python">
+  <meta name="keywords" content="redis,">
 
 
 
@@ -94,16 +94,18 @@
 
 
 
-<meta name="description" content="Blog of Chungen">
-<meta property="og:type" content="website">
-<meta property="og:title" content="IamGroot">
-<meta property="og:url" content="https://github.com/AsGroot/index.html">
+<meta name="description" content="[TOC] Redis 设计与实现第1章：概览第一部分：数据结构与对象  redis数据库里面的每个键值对都由对象组成，其中：  键总是一个字符串对象 值可以是字符串对象、列表对象、哈希对象、集合对象、有序集合对象   第二部分：单机数据库的实现  第9章：数据库。介绍数据库的实现原理，说明了：  服务器保存键值对的方法 服务器保存键值对过期时间的方法 服务器自动删除过期键值对的方法  第10章：">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis设计与实现">
+<meta property="og:url" content="https://github.com/AsGroot/2019/01/25/Redis 设计与实现/index.html">
 <meta property="og:site_name" content="IamGroot">
-<meta property="og:description" content="Blog of Chungen">
+<meta property="og:description" content="[TOC] Redis 设计与实现第1章：概览第一部分：数据结构与对象  redis数据库里面的每个键值对都由对象组成，其中：  键总是一个字符串对象 值可以是字符串对象、列表对象、哈希对象、集合对象、有序集合对象   第二部分：单机数据库的实现  第9章：数据库。介绍数据库的实现原理，说明了：  服务器保存键值对的方法 服务器保存键值对过期时间的方法 服务器自动删除过期键值对的方法  第10章：">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-24T06:36:54.302Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IamGroot">
-<meta name="twitter:description" content="Blog of Chungen">
+<meta name="twitter:title" content="Redis设计与实现">
+<meta name="twitter:description" content="[TOC] Redis 设计与实现第1章：概览第一部分：数据结构与对象  redis数据库里面的每个键值对都由对象组成，其中：  键总是一个字符串对象 值可以是字符串对象、列表对象、哈希对象、集合对象、有序集合对象   第二部分：单机数据库的实现  第9章：数据库。介绍数据库的实现原理，说明了：  服务器保存键值对的方法 服务器保存键值对过期时间的方法 服务器自动删除过期键值对的方法  第10章：">
 
 
 
@@ -132,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/AsGroot/">
+  <link rel="canonical" href="https://github.com/AsGroot/2019/01/25/Redis 设计与实现/">
 
 
 
 
 
-  <title>IamGroot</title>
+  <title>Redis设计与实现 | IamGroot</title>
   
 
 
@@ -163,9 +165,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,492 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/AsGroot/2019/08/24/编译YouCompleteMe/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chungen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/default_avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IamGroot">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/24/编译YouCompleteMe/" itemprop="url">VIM配置YouCompleteMe</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-24T00:00:00+08:00">
-                2019-08-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><ol>
-<li><p>Vim版本大于等于7.4，并且支持python2或python3。</p>
-</li>
-<li><p>编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install build-essential cmake python3-dev</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。</p>
-</li>
-</ol>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
-<li><p>下载YouCompleteMe源码：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Valloric/YouCompleteMe.git ~/.vim/plugged/</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下载源码后，在源码目录运行：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编译YouCompleteMe。YouCompleteMe需要手工编译出库文件ycm_core.so(以及依赖的libclang.so)才能使用。</p>
-<ul>
-<li>在YouCompleteMe目录下执行<code>./install.py --clang-completer</code>即可编译出具有C族语言语义补全功能的YouCompleteMe插件。</li>
-<li>其他选项还有：<code>c#(--cs-)</code>、<code>go(--go-)</code>、<code>JS(--ts-)</code>、<code>Java(--java-)</code>、<code>Rust(--rust-)</code>。</li>
-<li>以上选项都必须满足相应依赖；<code>--all</code>则会编译以上所有满足依赖的选项。</li>
-</ul>
-</li>
-<li><p>必须要在<code>.vimrc</code>的插件列表中引用该插件。</p>
-</li>
-<li><p><code>.vimrc</code>文件中的ycm配置项的python解释器应该与编译YouCompleteMe时所用的python版本一致。</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/AsGroot/2019/08/23/Ubuntu-DigitOcean-Nginx-Hexo-搭建博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chungen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/default_avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IamGroot">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/23/Ubuntu-DigitOcean-Nginx-Hexo-搭建博客/" itemprop="url">Ubuntu(DigitOcean)+Nginx+Hexo搭建博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-23T00:00:00+08:00">
-                2019-08-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>前几日，由于想自己搭建一个可以翻墙的服务器，便在DigitOcean上买了一个每个月5美元的最低配置版的装有Ubuntu系统的Droplets。如果是学生的话可以在github领学生包，里面有50美元的代金券，直接在github上搜索<strong>github student pack</strong>就能找到，代金券可以在DigitOcean上面使用。还有一种方法就是通过我的邀请<strong><a href="https://m.do.co/c/5923bd1d0c9d" target="_blank" rel="noopener">链接</a></strong>在DigitOcean上面注册成功后就可以获得10美元，相当于可以免费用两个月。不过，在注册成功前，你必须先充值5美元以激活帐户，这5美元貌似可以申请退还，不过我没试过，毕竟自己会经常用服务器。</p>
-<p>迅速搭建完成后，测试了一下，果然可以科学上网了。于是，又想搞点新鲜的玩意儿，毕竟服务器只用来翻墙貌似有点太浪费。于是就想着搭建一个自己的博客系统，闲来无事可以自己写写随笔，作作技术笔记，也算积累一下经验。</p>
-<p>听室友说，Hexo用来搭建博客系统不错，于是便决定用它了。Hexo生成的是静态文件，所以可以在本地利用Hexo先生成静态文件，然后将这些静态文件通过git部署到服务器上，用Nginx做Web服务。由于hexo支持git的部署方式，所以可以实现从本地更新博客，非常方便。</p>
-<h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><h3 id="本机操作"><a href="#本机操作" class="headerlink" title="本机操作"></a>本机操作</h3><p><strong>由于本机是windows，所以这里以windows为例。</strong></p>
-<ol>
-<li><p>安装Node.js和Git</p>
-</li>
-<li><p>生成SSH密钥(有就不用生成)：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"email@example.com"</span> <span class="comment"># 一路回车</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建一个文件夹作为博客网站的目录（例如：<code>E:\BLOG</code>）</p>
-</li>
-<li><p>进入BLOG目录，执行如下命令初始化Hexo博客：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装插件</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hero-server</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>生成静态文件并启动hexo服务</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打开浏览器输入<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> ，可看到第一篇博客，这只是本地博客。</p>
-</li>
-</ol>
-<h3 id="服务器操作"><a href="#服务器操作" class="headerlink" title="服务器操作"></a>服务器操作</h3><ol>
-<li>连接服务器：这里我用git bash连接 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@&lt;ip地址&gt;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<ol start="2">
-<li>在服务器上安装Git和Node.js以及Nginx <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">sudo apt install nodejs</span><br><span class="line">sudo apt install npm</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<ol start="3">
-<li><p><strong>配置Nginx托管目录</strong></p>
-<p>3.1. 创建<code>/var/www/hexo</code>目录，用于Nginx托管</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /var/www/hexo</span><br><span class="line">chown -R <span class="variable">$USER</span>:<span class="variable">$USER</span> /var/www/hexo</span><br><span class="line">chmod -R 755 /var/www/hexo</span><br></pre></td></tr></table></figure>
-
-<p>3.2. 修改Nginx配置</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/sites-enabled/default</span><br><span class="line"><span class="comment"># 将 root /var/www/html 改为 root /var/www/hexo</span></span><br><span class="line"><span class="comment"># 保存退出</span></span><br></pre></td></tr></table></figure>
-
-<p>3.3. 重启nginx</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>创建私有git仓库</strong></p>
-<p>4.1. 创建用户：git，用于运行git服务</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser git</span><br></pre></td></tr></table></figure>
-
-<p>4.2. 将本机的SSH公钥：<code>.ssh</code>目录下的<code>id_rsa.pub</code>内容添加到<code>/home/git/.ssh/authorized_keys</code>文件中。</p>
-<p>4.3. 在<code>/home/git</code>下创建一个名为<code>hexo.git</code>的裸仓库</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init --bare hexo.git</span><br></pre></td></tr></table></figure>
-
-<p>4.4. 创建Git钩子，在满足条件情况下将静态文件传送到Web服务器目录，即<code>/var/www/hexo</code></p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /home/git/hexo.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
-
-<p>4.5. 添加如下代码</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">git --work-tree=/var/www/hexo --git-dir=/home/git/hexo.git checkout -f</span><br></pre></td></tr></table></figure>
-
-<p>4.6. 保存并退出，将该文件变为可执行文件</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /home/git/hexo.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
-
-<p>4.7. 将<code>hexo.git</code>目录和网站目录的所有者改为git用户</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R git:git /home/git/hexo.git</span><br><span class="line">sudo chown -R git:git /var/www/hexo</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>至此，结束服务器端配置。</p>
-<h3 id="部署到服务端"><a href="#部署到服务端" class="headerlink" title="部署到服务端"></a>部署到服务端</h3><ol>
-<li><p>在本机中修改hexo站点配置文件<code>_config.yml</code></p>
- <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">repo:</span> <span class="string">git@&lt;服务器IP地址或域名&gt;:/home/git/hexo.git</span></span><br><span class="line"><span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>之后就能通过以下命令，完成博客的更新了。</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="引用："><a href="#引用：" class="headerlink" title="引用："></a>引用：</h3><ul>
-<li><p>[1] <a href="https://www.zxavier.com/Ubuntu+hexo+nginx%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2.html" target="_blank" rel="noopener">https://www.zxavier.com/Ubuntu+hexo+nginx%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2.html</a></p>
-</li>
-<li><p>[2] <a href="https://tiktoking.github.io/2016/01/26/hexo/" target="_blank" rel="noopener">https://tiktoking.github.io/2016/01/26/hexo/</a></p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/AsGroot/2019/08/23/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chungen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/default_avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IamGroot">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/23/hello-world/" itemprop="url">Hexo Tutorial</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-23T00:00:00+08:00">
-                2019-08-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -763,9 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/25/Redis 设计与实现/" itemprop="url">Redis设计与实现</a></h1>
+          <h1 class="post-title" itemprop="name headline">Redis设计与实现</h1>
         
 
         <div class="post-meta">
@@ -815,9 +330,7 @@
       
 
       
-        
-          
-            <p>[TOC]</p>
+        <p>[TOC]</p>
 <h1 id="Redis-设计与实现"><a href="#Redis-设计与实现" class="headerlink" title="Redis 设计与实现"></a>Redis 设计与实现</h1><h2 id="第1章：概览"><a href="#第1章：概览" class="headerlink" title="第1章：概览"></a>第1章：概览</h2><p><strong>第一部分：数据结构与对象</strong></p>
 <blockquote>
 <p>redis数据库里面的每个键值对都由对象组成，其中：</p>
@@ -1817,8 +1330,6 @@
 </tr>
 </tbody></table>
 <h3 id="8-4：哈希对象"><a href="#8-4：哈希对象" class="headerlink" title="8.4：哈希对象"></a>8.4：哈希对象</h3>
-          
-        
       
     </div>
     
@@ -1833,14 +1344,36 @@
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
+          
+        </div>
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/23/hello-world/" rel="prev" title="Hexo Tutorial">
+                Hexo Tutorial <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </div>
@@ -1850,10 +1383,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -1861,6 +1395,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -1881,8 +1419,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/default_avatar.png" alt="Chungen">
           <p class="site-author-name" itemprop="name">Chungen</p>
@@ -1933,6 +1480,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-设计与实现"><span class="nav-number">1.</span> <span class="nav-text">Redis 设计与实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第1章：概览"><span class="nav-number">1.1.</span> <span class="nav-text">第1章：概览</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第一部分：数据结构与对象"><span class="nav-number">2.</span> <span class="nav-text">第一部分：数据结构与对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第2章：简单动态字符串（SDS）"><span class="nav-number">2.1.</span> <span class="nav-text">第2章：简单动态字符串（SDS）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1：SDS的定义"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1：SDS的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2：SDS与C字符串的区别"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.2：SDS与C字符串的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1：常数复杂度获取字符串长度"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">2.2.1：常数复杂度获取字符串长度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2：杜绝缓冲区溢出"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">2.2.2：杜绝缓冲区溢出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3：减少修改字符串带来的内存重分配次数"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">2.2.3：减少修改字符串带来的内存重分配次数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-4：二进制安全"><span class="nav-number">2.1.2.4.</span> <span class="nav-text">2.2.4：二进制安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-5：兼容部分C字符串函数"><span class="nav-number">2.1.2.5.</span> <span class="nav-text">2.2.5：兼容部分C字符串函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-6：总结"><span class="nav-number">2.1.2.6.</span> <span class="nav-text">2.2.6：总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3：SDS-API"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.3：SDS API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4：重点回顾"><span class="nav-number">2.1.4.</span> <span class="nav-text">2.4：重点回顾</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第3章：链表"><span class="nav-number">2.2.</span> <span class="nav-text">第3章：链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1：链表和链表节点的实现"><span class="nav-number">2.2.1.</span> <span class="nav-text">3.1：链表和链表节点的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2：链表和链表节点的API"><span class="nav-number">2.2.2.</span> <span class="nav-text">3.2：链表和链表节点的API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第4章：字典"><span class="nav-number">2.3.</span> <span class="nav-text">第4章：字典</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1：字典的实现"><span class="nav-number">2.3.1.</span> <span class="nav-text">4.1：字典的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-1：哈希表"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">4.1.1：哈希表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-2：哈希表节点"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">4.1.2：哈希表节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-3：字典"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">4.1.3：字典</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2：哈希算法"><span class="nav-number">2.3.2.</span> <span class="nav-text">4.2：哈希算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3：解决键冲突"><span class="nav-number">2.3.3.</span> <span class="nav-text">4.3：解决键冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4：Rehash"><span class="nav-number">2.3.4.</span> <span class="nav-text">4.4：Rehash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5：渐进式rehash"><span class="nav-number">2.3.5.</span> <span class="nav-text">4.5：渐进式rehash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6：字典API"><span class="nav-number">2.3.6.</span> <span class="nav-text">4.6：字典API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第5章：跳跃表"><span class="nav-number">2.4.</span> <span class="nav-text">第5章：跳跃表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1：跳跃表的实现"><span class="nav-number">2.4.1.</span> <span class="nav-text">5.1：跳跃表的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-1：跳跃表节点"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">5.1.1：跳跃表节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-2：跳跃表"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">5.1.2：跳跃表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2：跳跃表API"><span class="nav-number">2.4.2.</span> <span class="nav-text">5.2：跳跃表API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第6章：整数集合"><span class="nav-number">2.5.</span> <span class="nav-text">第6章：整数集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1：整数集合的实现"><span class="nav-number">2.5.1.</span> <span class="nav-text">6.1：整数集合的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2：升级"><span class="nav-number">2.5.2.</span> <span class="nav-text">6.2：升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3：升级的好处"><span class="nav-number">2.5.3.</span> <span class="nav-text">6.3：升级的好处</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-1：提高灵活性"><span class="nav-number">2.5.3.1.</span> <span class="nav-text">6.3.1：提高灵活性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-2：节约内存"><span class="nav-number">2.5.3.2.</span> <span class="nav-text">6.3.2：节约内存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4：降级"><span class="nav-number">2.5.4.</span> <span class="nav-text">6.4：降级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5：整数集合API"><span class="nav-number">2.5.5.</span> <span class="nav-text">6.5：整数集合API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第7章：压缩列表"><span class="nav-number">2.6.</span> <span class="nav-text">第7章：压缩列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1：压缩列表的构成"><span class="nav-number">2.6.1.</span> <span class="nav-text">7.1：压缩列表的构成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-压缩列表节点的构成"><span class="nav-number">2.6.2.</span> <span class="nav-text">7.2:压缩列表节点的构成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-1：previous-entry-length"><span class="nav-number">2.6.2.1.</span> <span class="nav-text">7.2.1：previous_entry_length</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-2：encoding"><span class="nav-number">2.6.2.2.</span> <span class="nav-text">7.2.2：encoding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-3：content"><span class="nav-number">2.6.2.3.</span> <span class="nav-text">7.2.3：content</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3：连锁更新"><span class="nav-number">2.6.3.</span> <span class="nav-text">7.3：连锁更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4：压缩列表API"><span class="nav-number">2.6.4.</span> <span class="nav-text">7.4：压缩列表API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第8章：对象"><span class="nav-number">2.7.</span> <span class="nav-text">第8章：对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1：对象的类型与编码"><span class="nav-number">2.7.1.</span> <span class="nav-text">8.1：对象的类型与编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-1-类型"><span class="nav-number">2.7.1.1.</span> <span class="nav-text">8.1.1:类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-2：编码和底层实现"><span class="nav-number">2.7.1.2.</span> <span class="nav-text">8.1.2：编码和底层实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2：字符串对象"><span class="nav-number">2.7.2.</span> <span class="nav-text">8.2：字符串对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-1：编码的转换"><span class="nav-number">2.7.2.1.</span> <span class="nav-text">8.2.1：编码的转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-2：字符串命令的实现"><span class="nav-number">2.7.2.2.</span> <span class="nav-text">8.2.2：字符串命令的实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3：列表对象"><span class="nav-number">2.7.3.</span> <span class="nav-text">8.3：列表对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-3-1：编码转换"><span class="nav-number">2.7.3.1.</span> <span class="nav-text">8.3.1：编码转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-3-2：列表命令的实现"><span class="nav-number">2.7.3.2.</span> <span class="nav-text">8.3.2：列表命令的实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4：哈希对象"><span class="nav-number">2.7.4.</span> <span class="nav-text">8.4：哈希对象</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -2046,10 +1609,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
