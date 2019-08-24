@@ -818,8 +818,7 @@
         
           
             <p>[TOC]</p>
-<h1 id="Redis-设计与实现"><a href="#Redis-设计与实现" class="headerlink" title="Redis 设计与实现"></a>Redis 设计与实现</h1><p><strong>第1章：概览</strong></p>
-<p><strong>第一部分：数据结构与对象</strong></p>
+<h1 id="Redis-设计与实现"><a href="#Redis-设计与实现" class="headerlink" title="Redis 设计与实现"></a>Redis 设计与实现</h1><h2 id="第1章：概览"><a href="#第1章：概览" class="headerlink" title="第1章：概览"></a>第1章：概览</h2><p><strong>第一部分：数据结构与对象</strong></p>
 <blockquote>
 <p>redis数据库里面的每个键值对都由对象组成，其中：</p>
 <ol>
@@ -864,7 +863,7 @@
 <p><strong>第23章：慢查询日志。</strong>SLOWLOG GET、SLOWLOG LEN、SLOWLOG RESET命令</p>
 <p><strong>第24章：监视器。</strong>如何将客户端变为监视器（monitor），服务器如何向监视器发送命令信息</p>
 </blockquote>
-<h2 id="第1章：概览"><a href="#第1章：概览" class="headerlink" title="第1章：概览"></a>第1章：概览</h2><h1 id="第一部分：数据结构与对象"><a href="#第一部分：数据结构与对象" class="headerlink" title="第一部分：数据结构与对象"></a>第一部分：数据结构与对象</h1><h2 id="第2章：简单动态字符串（SDS）"><a href="#第2章：简单动态字符串（SDS）" class="headerlink" title="第2章：简单动态字符串（SDS）"></a>第2章：简单动态字符串（SDS）</h2><p>Redis没有直接使用C字符串，在Redis里C字符串只会作为字符串字面量，用在无须修改字符串值的地方。当Redis需要一个可以被修改的字符串值时会使用SDS。SDS不仅可以用来保存字符串值，还能被用作缓冲区：AOF缓冲区、客户端状态中的输入缓冲区。</p>
+<h1 id="第一部分：数据结构与对象"><a href="#第一部分：数据结构与对象" class="headerlink" title="第一部分：数据结构与对象"></a>第一部分：数据结构与对象</h1><h2 id="第2章：简单动态字符串（SDS）"><a href="#第2章：简单动态字符串（SDS）" class="headerlink" title="第2章：简单动态字符串（SDS）"></a>第2章：简单动态字符串（SDS）</h2><p>Redis没有直接使用C字符串，在Redis里C字符串只会作为字符串字面量，用在无须修改字符串值的地方。当Redis需要一个可以被修改的字符串值时会使用SDS。SDS不仅可以用来保存字符串值，还能被用作缓冲区：AOF缓冲区、客户端状态中的输入缓冲区。</p>
 <h3 id="2-1：SDS的定义"><a href="#2-1：SDS的定义" class="headerlink" title="2.1：SDS的定义"></a>2.1：SDS的定义</h3><p>每个sds.h/sdshdr结构表示一个SDS值：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sdshdr</span> &#123;</span></span><br><span class="line">    <span class="comment">// 记录buf数组中已使用字节的数量</span></span><br><span class="line">    <span class="comment">// 等于SDS所保存字符串的长度</span></span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 记录buf数组中未使用字节的数量</span></span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">free</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 字节数组，用于保存字符串</span></span><br><span class="line">    <span class="keyword">char</span> buf[];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
