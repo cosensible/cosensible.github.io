@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://github.com/AsGroot">
-  <title>Ubuntu(DigitOcean) Nginx Hexo 搭建博客 | IamGroot</title>
+  <title>Ubuntu(DigitOcean)+Nginx+Hexo搭建博客 | IamGroot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="写在前面  前几日，由于想自己搭建一个可以翻墙的服务器，便在DigitOcean上买了一个每个月5美元的最低配置版的装有Ubuntu系统的Droplets。如果是学生的话可以在github领学生包，里面有50美元的代金券，直接在github上搜索github student pack就能找到，代金券可以在DigitOcean上面使用。还有一种方法就是通过我的邀请链接在DigitOcean上面注册成">
-<meta name="keywords" content="技术">
+  <meta name="description" content="前几日，由于想自己搭建一个可以翻墙的服务器，便在DigitOcean上买了一个每个月5美元的最低配置版的装有Ubuntu系统的Droplets。如果是学生的话可以在github领学生包，里面有50美元的代金券，直接在github上搜索github student pack就能找到，代金券可以在DigitOcean上面使用。还有一种方法就是通过我的邀请链接在DigitOcean上面注册成功后就可以获">
+<meta name="keywords" content="博客">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu(DigitOcean) Nginx Hexo 搭建博客">
+<meta property="og:title" content="Ubuntu(DigitOcean)+Nginx+Hexo搭建博客">
 <meta property="og:url" content="https://github.com/AsGroot/2018/03/13/Ubuntu-DigitOcean-Nginx-Hexo-搭建博客/index.html">
 <meta property="og:site_name" content="IamGroot">
-<meta property="og:description" content="写在前面  前几日，由于想自己搭建一个可以翻墙的服务器，便在DigitOcean上买了一个每个月5美元的最低配置版的装有Ubuntu系统的Droplets。如果是学生的话可以在github领学生包，里面有50美元的代金券，直接在github上搜索github student pack就能找到，代金券可以在DigitOcean上面使用。还有一种方法就是通过我的邀请链接在DigitOcean上面注册成">
+<meta property="og:description" content="前几日，由于想自己搭建一个可以翻墙的服务器，便在DigitOcean上买了一个每个月5美元的最低配置版的装有Ubuntu系统的Droplets。如果是学生的话可以在github领学生包，里面有50美元的代金券，直接在github上搜索github student pack就能找到，代金券可以在DigitOcean上面使用。还有一种方法就是通过我的邀请链接在DigitOcean上面注册成功后就可以获">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-04-23T15:58:16.000Z">
+<meta property="og:updated_time" content="2019-08-24T04:12:37.889Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu(DigitOcean) Nginx Hexo 搭建博客">
-<meta name="twitter:description" content="写在前面  前几日，由于想自己搭建一个可以翻墙的服务器，便在DigitOcean上买了一个每个月5美元的最低配置版的装有Ubuntu系统的Droplets。如果是学生的话可以在github领学生包，里面有50美元的代金券，直接在github上搜索github student pack就能找到，代金券可以在DigitOcean上面使用。还有一种方法就是通过我的邀请链接在DigitOcean上面注册成">
+<meta name="twitter:title" content="Ubuntu(DigitOcean)+Nginx+Hexo搭建博客">
+<meta name="twitter:description" content="前几日，由于想自己搭建一个可以翻墙的服务器，便在DigitOcean上买了一个每个月5美元的最低配置版的装有Ubuntu系统的Droplets。如果是学生的话可以在github领学生包，里面有50美元的代金券，直接在github上搜索github student pack就能找到，代金券可以在DigitOcean上面使用。还有一种方法就是通过我的邀请链接在DigitOcean上面注册成功后就可以获">
   
     <link rel="alternative" href="/atom.xml" title="IamGroot" type="application/atom+xml">
   
@@ -162,98 +162,89 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Ubuntu(DigitOcean) Nginx Hexo 搭建博客
+      Ubuntu(DigitOcean)+Nginx+Hexo搭建博客
     </h1>
   
 
         
         <a href="/2018/03/13/Ubuntu-DigitOcean-Nginx-Hexo-搭建博客/" class="archive-article-date">
-  	<time datetime="2018-03-13T08:31:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-13</time>
+  	<time datetime="2018-03-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>  前几日，由于想自己搭建一个可以翻墙的服务器，便在DigitOcean上买了一个每个月5美元的最低配置版的装有Ubuntu系统的Droplets。如果是学生的话可以在github领学生包，里面有50美元的代金券，直接在github上搜索<strong>github student pack</strong>就能找到，代金券可以在DigitOcean上面使用。还有一种方法就是通过我的邀请<strong><a href="https://m.do.co/c/5923bd1d0c9d" target="_blank" rel="noopener">链接</a></strong>在DigitOcean上面注册成功后就可以获得10美元，相当于可以免费用两个月。不过，在注册成功前，你必须先充值5美元以激活帐户，这5美元貌似可以申请退还，不过我没试过，毕竟自己会经常用服务器。</p>
-<p>  迅速搭建完成后，测试了一下，果然可以科学上网了。于是，又想搞点新鲜的玩意儿，毕竟服务器只用来翻墙貌似有点太浪费。于是就想着搭建一个自己的博客系统，闲来无事可以自己写写随笔，作作技术笔记，也算积累一下经验。紧接着，便有了下文。</p>
-<h2 id="基本想法"><a href="#基本想法" class="headerlink" title="基本想法"></a>基本想法</h2><p>  听室友说，Hexo用来搭建博客系统不错，于是便决定用它了。Hexo生成的是静态文件，所以可以在本地利用Hexo先生成静态文件，然后将这些静态文件通过git部署到服务器上，用Nginx做Web服务。由于hexo支持git的部署方式，所以可以实现从本地更新博客，非常方便。</p>
-<h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><h3 id="本机操作"><a href="#本机操作" class="headerlink" title="本机操作"></a>本机操作</h3><blockquote>
-<p><strong>由于本机是windows，所以这里以windows为例。</strong></p>
-</blockquote>
+        <p>前几日，由于想自己搭建一个可以翻墙的服务器，便在DigitOcean上买了一个每个月5美元的最低配置版的装有Ubuntu系统的Droplets。如果是学生的话可以在github领学生包，里面有50美元的代金券，直接在github上搜索<strong>github student pack</strong>就能找到，代金券可以在DigitOcean上面使用。还有一种方法就是通过我的邀请<strong><a href="https://m.do.co/c/5923bd1d0c9d" target="_blank" rel="noopener">链接</a></strong>在DigitOcean上面注册成功后就可以获得10美元，相当于可以免费用两个月。不过，在注册成功前，你必须先充值5美元以激活帐户，这5美元貌似可以申请退还，不过我没试过，毕竟自己会经常用服务器。</p>
+<p>迅速搭建完成后，测试了一下，果然可以科学上网了。于是，又想搞点新鲜的玩意儿，毕竟服务器只用来翻墙貌似有点太浪费。于是就想着搭建一个自己的博客系统，闲来无事可以自己写写随笔，作作技术笔记，也算积累一下经验。</p>
+<p>听室友说，Hexo用来搭建博客系统不错，于是便决定用它了。Hexo生成的是静态文件，所以可以在本地利用Hexo先生成静态文件，然后将这些静态文件通过git部署到服务器上，用Nginx做Web服务。由于hexo支持git的部署方式，所以可以实现从本地更新博客，非常方便。</p>
+<h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><h3 id="本机操作"><a href="#本机操作" class="headerlink" title="本机操作"></a>本机操作</h3><p><strong>由于本机是windows，所以这里以windows为例。</strong></p>
 <ol>
 <li><p>安装Node.js和Git</p>
 </li>
 <li><p>生成SSH密钥(有就不用生成)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;email@example.com&quot; #不想折腾，一路回车即可</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"email@example.com"</span> <span class="comment"># 一路回车</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>创建一个文件夹作为博客网站的目录（例如：E:\BLOG）</p>
 </li>
 <li><p>进入BLOG目录，执行如下命令初始化Hexo博客：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装插件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hero-server</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hero-server</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>生成静态文件并启动hexo服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>打开浏览器输入<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> ，可看到第一篇博客，这只是本地博客。</p>
 </li>
 </ol>
 <h3 id="服务器操作"><a href="#服务器操作" class="headerlink" title="服务器操作"></a>服务器操作</h3><ol>
 <li><p>连接服务器：这里我用git bash连接</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@&lt;ip地址&gt;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@&lt;ip地址&gt;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在服务器上安装Git和Node.js以及Nginx</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">sudo apt install nodejs</span><br><span class="line">sudo apt install npm</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">sudo apt install nodejs</span><br><span class="line">sudo apt install npm</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>==配置Nginx托管目录==</p>
+</li>
+<li><ol>
+<li>创建/var/www/hexo目录，用于Nginx托管<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /var/www/hexo</span><br><span class="line">chown -R <span class="variable">$USER</span>:<span class="variable">$USER</span> /var/www/hexo</span><br><span class="line">chmod -R 755 /var/www/hexo</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<p><strong>3. 配置Nginx托管目录</strong></p>
-<ul>
-<li><p>创建/var/www/hexo目录，用于Nginx托管</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /var/www/hexo</span><br><span class="line">chown -R $USER:$USER /var/www/hexo</span><br><span class="line">chmod -R 755 /var/www/hexo</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>修改Nginx配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/sites-enabled/default</span><br><span class="line"># 将 root /var/www/html 改为 root /var/www/hexo</span><br><span class="line"># 保存退出</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启nginx</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+</ol>
+<p>3.2. 修改Nginx配置<br>    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/sites-enabled/default</span><br><span class="line"><span class="comment"># 将 root /var/www/html 改为 root /var/www/hexo</span></span><br><span class="line"><span class="comment"># 保存退出</span></span><br></pre></td></tr></table></figure></p>
+<p>3.3. 重启nginx<br>    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li><p>==创建私有git仓库==<br>4.1. 创建用户：git，用于运行git服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser git</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<p><strong>4. 创建私有git仓库</strong></p>
-<ul>
-<li><p>创建用户：git，用于运行git服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将本机的SSH公钥：.ssh目录下的id_rsa.pub内容添加到/home/git/.ssh/authorized_keys文件中。</p>
-</li>
-<li><p>在/home/git下创建一个名为hexo.git的裸仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init --bare hexo.git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建Git钩子，在满足条件情况下将静态文件传送到Web服务器目录，即/var/www/hexo</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /home/git/hexo.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加如下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">git --work-tree=/var/www/hexo --git-dir=/home/git/hexo.git checkout -f</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>保存并退出，将该文件变为可执行文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /home/git/hexo.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将hexo.git目录和网站目录的所有者改为git用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R git:git /home/git/hexo.git</span><br><span class="line">sudo chown -R git:git /var/www/hexo</span><br></pre></td></tr></table></figure>
+<p>4.2. 将本机的SSH公钥：.ssh目录下的id_rsa.pub内容添加到/home/git/.ssh/authorized_keys文件中。<br>4.3. 在/home/git下创建一个名为hexo.git的裸仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init --bare hexo.git</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
+<p>4.4. 创建Git钩子，在满足条件情况下将静态文件传送到Web服务器目录，即/var/www/hexo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /home/git/hexo.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
+
+<p>4.5. 添加如下代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">git --work-tree=/var/www/hexo --git-dir=/home/git/hexo.git checkout -f</span><br></pre></td></tr></table></figure>
+
+<p>4.6. 保存并退出，将该文件变为可执行文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /home/git/hexo.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
+
+<p>4.7. 将hexo.git目录和网站目录的所有者改为git用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R git:git /home/git/hexo.git</span><br><span class="line">sudo chown -R git:git /var/www/hexo</span><br></pre></td></tr></table></figure>
+
 <p>至此，结束服务器端配置。</p>
+</li>
+</ol>
 <h3 id="部署到服务端"><a href="#部署到服务端" class="headerlink" title="部署到服务端"></a>部署到服务端</h3><ol>
 <li><p>在本机中修改hexo站点配置文件_config.yml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@&lt;服务器IP地址或域名&gt;:/home/git/hexo.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+ <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">git@&lt;服务器IP地址或域名&gt;:/home/git/hexo.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>之后就能通过以下命令，完成博客的更新了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -297,7 +288,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
         		</li>
       		
 		</ul>
@@ -367,15 +358,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/24/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/08/15/编译YouCompleteMe/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Hello World
+          VIM配置YouCompleteMe
         
       </div>
     </a>
   
+  
+    <a href="/2018/03/13/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo Tutorial</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -499,7 +495,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
             
             <div class="clearfix"></div>

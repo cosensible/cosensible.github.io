@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://github.com/AsGroot">
-  <title>编译YouCompleteMe | IamGroot</title>
+  <title>VIM配置YouCompleteMe | IamGroot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="条件 Vim版本大于等于7.4，并且支持python2或python3  编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装: sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全   步骤 下载Yo">
+  <meta name="description" content="条件 Vim版本大于等于7.4，并且支持python2或python3。  编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:  1sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。   步骤">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编译YouCompleteMe">
-<meta property="og:url" content="https://github.com/AsGroot/2019/08/24/编译YouCompleteMe/index.html">
+<meta property="og:title" content="VIM配置YouCompleteMe">
+<meta property="og:url" content="https://github.com/AsGroot/2019/08/15/编译YouCompleteMe/index.html">
 <meta property="og:site_name" content="IamGroot">
-<meta property="og:description" content="条件 Vim版本大于等于7.4，并且支持python2或python3  编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装: sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全   步骤 下载Yo">
+<meta property="og:description" content="条件 Vim版本大于等于7.4，并且支持python2或python3。  编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:  1sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。   步骤">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-24T03:06:19.099Z">
+<meta property="og:updated_time" content="2019-08-24T04:21:17.497Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="编译YouCompleteMe">
-<meta name="twitter:description" content="条件 Vim版本大于等于7.4，并且支持python2或python3  编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装: sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全   步骤 下载Yo">
+<meta name="twitter:title" content="VIM配置YouCompleteMe">
+<meta name="twitter:description" content="条件 Vim版本大于等于7.4，并且支持python2或python3。  编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:  1sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。   步骤">
   
     <link rel="alternative" href="/atom.xml" title="IamGroot" type="application/atom+xml">
   
@@ -161,13 +162,13 @@
         
   
     <h1 class="article-title" itemprop="name">
-      编译YouCompleteMe
+      VIM配置YouCompleteMe
     </h1>
   
 
         
-        <a href="/2019/08/24/编译YouCompleteMe/" class="archive-article-date">
-  	<time datetime="2019-08-24T03:04:04.849Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-24</time>
+        <a href="/2019/08/15/编译YouCompleteMe/" class="archive-article-date">
+  	<time datetime="2019-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
 </a>
         
       </header>
@@ -175,31 +176,31 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><ol>
-<li><p>Vim版本大于等于7.4，并且支持python2或python3</p>
+<li><p>Vim版本大于等于7.4，并且支持python2或python3。</p>
 </li>
 <li><p>编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:</p>
-<p>sudo apt install build-essential cmake python3-dev</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install build-essential cmake python3-dev</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全</p>
+<li><p>clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。</p>
 </li>
 </ol>
 <h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
 <li><p>下载YouCompleteMe源码：</p>
-<p>git clone <a href="https://github.com/Valloric/YouCompleteMe.git">https://github.com/Valloric/YouCompleteMe.git</a> ~/.vim/plugged/</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Valloric/YouCompleteMe.git ~/.vim/plugged/</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>下载源码后，在源码目录运行：</p>
-<p>git submodule update –init –recursive</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>编译YouCompleteMe：YouCompleteMe需要手工编译出库文件 ycm_core.so (以及依赖的libclang.so) 才能使用。</p>
+<li><p>编译YouCompleteMe。YouCompleteMe需要手工编译出库文件ycm_core.so(以及依赖的libclang.so)才能使用。</p>
 <ul>
-<li>在YouCompleteMe目录下执行 ./install.py –clang-completer 即可编译出具有C族语言语义补全功能的 YouCompleteMe 插件。</li>
-<li>其他选项还有：c#(–cs-)、go(–go-)、JS(–ts-)、Java(–java-)、Rust(–rust-)</li>
-<li>以上选项都必须满足相应依赖；–all则会编译以上所有满足依赖的选项。</li>
+<li>在YouCompleteMe目录下执行<code>./install.py --clang-completer</code>即可编译出具有C族语言语义补全功能的YouCompleteMe插件。</li>
+<li>其他选项还有：<code>c#(--cs-)</code>、<code>go(--go-)</code>、<code>JS(--ts-)</code>、<code>Java(--java-)</code>、<code>Rust(--rust-)</code>。</li>
+<li>以上选项都必须满足相应依赖；<code>--all</code>则会编译以上所有满足依赖的选项。</li>
 </ul>
 </li>
-<li><p>必须要在.vimrc的插件列表中引用该插件。</p>
+<li><p>必须要在<code>.vimrc</code>的插件列表中引用该插件。</p>
 </li>
-<li><p>.vimrc文件中的ycm配置项的python解释器应该与编译YouCompleteMe时所用的python版本一致。</p>
+<li><p><code>.vimrc</code>文件中的ycm配置项的python解释器应该与编译YouCompleteMe时所用的python版本一致。</p>
 </li>
 </ol>
 
@@ -231,6 +232,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -281,7 +293,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/AsGroot/2019/08/24/编译YouCompleteMe/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/AsGroot/2019/08/15/编译YouCompleteMe/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -296,8 +308,8 @@
 <nav id="article-nav">
   
   
-    <a href="/2019/08/24/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2018/03/13/Ubuntu-DigitOcean-Nginx-Hexo-搭建博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu(DigitOcean)+Nginx+Hexo搭建博客</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -423,7 +435,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
             
             <div class="clearfix"></div>
