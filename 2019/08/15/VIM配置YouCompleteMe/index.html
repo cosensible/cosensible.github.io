@@ -112,18 +112,18 @@
 
 
 
-<meta name="description" content="条件 Vim版本大于等于7.4，并且支持python2或python3。  编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:  1sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。   步骤">
+<meta name="description" content="条件 Vim版本大于等于7.4，并且支持python2或python3。 编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:  1sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。   步骤 下">
 <meta name="keywords" content="VIM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VIM配置YouCompleteMe">
 <meta property="og:url" content="https://asgroot.github.io/2019/08/15/VIM配置YouCompleteMe/index.html">
 <meta property="og:site_name" content="IamGroot">
-<meta property="og:description" content="条件 Vim版本大于等于7.4，并且支持python2或python3。  编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:  1sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。   步骤">
+<meta property="og:description" content="条件 Vim版本大于等于7.4，并且支持python2或python3。 编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:  1sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。   步骤 下">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-08-24T10:37:09.468Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VIM配置YouCompleteMe">
-<meta name="twitter:description" content="条件 Vim版本大于等于7.4，并且支持python2或python3。  编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:  1sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。   步骤">
+<meta name="twitter:description" content="条件 Vim版本大于等于7.4，并且支持python2或python3。 编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:  1sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。   步骤 下">
 
 
 
@@ -392,8 +392,7 @@
 
       
         <h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><ol>
-<li><p>Vim版本大于等于7.4，并且支持python2或python3。</p>
-</li>
+<li>Vim版本大于等于7.4，并且支持python2或python3。</li>
 <li><p>编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install build-essential cmake python3-dev</span><br></pre></td></tr></table></figure>
 </li>
@@ -414,10 +413,8 @@
 <li>以上选项都必须满足相应依赖；<code>--all</code>则会编译以上所有满足依赖的选项。</li>
 </ul>
 </li>
-<li><p>必须要在<code>.vimrc</code>的插件列表中引用该插件。</p>
-</li>
-<li><p><code>.vimrc</code>文件中的ycm配置项的python解释器应该与编译YouCompleteMe时所用的python版本一致。</p>
-</li>
+<li>必须要在<code>.vimrc</code>的插件列表中引用该插件。</li>
+<li><code>.vimrc</code>文件中的ycm配置项的python解释器应该与编译YouCompleteMe时所用的python版本一致。</li>
 </ol>
 
       
@@ -741,7 +738,24 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
@@ -785,28 +799,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
 
   
 

@@ -396,8 +396,7 @@
 <p>听室友说，Hexo用来搭建博客系统不错，于是便决定用它了。Hexo生成的是静态文件，所以可以在本地利用Hexo先生成静态文件，然后将这些静态文件通过git部署到服务器上，用Nginx做Web服务。由于hexo支持git的部署方式，所以可以实现从本地更新博客，非常方便。</p>
 <h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><h3 id="本机操作"><a href="#本机操作" class="headerlink" title="本机操作"></a>本机操作</h3><p><strong>由于本机是windows，所以这里以windows为例。</strong></p>
 <ol>
-<li><p>安装Node.js和Git</p>
-</li>
+<li>安装Node.js和Git</li>
 <li><p>生成SSH密钥(有就不用生成)：</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"email@example.com"</span> <span class="comment"># 一路回车</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -417,47 +416,35 @@
 </ol>
 <h3 id="服务器操作"><a href="#服务器操作" class="headerlink" title="服务器操作"></a>服务器操作</h3><ol>
 <li>连接服务器：这里我用git bash连接 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@&lt;ip地址&gt;</span><br></pre></td></tr></table></figure>
-
-
 </li>
 </ol>
-<ol start="2">
+<ol>
 <li>在服务器上安装Git和Node.js以及Nginx <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">sudo apt install nodejs</span><br><span class="line">sudo apt install npm</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
-
-
 </li>
 </ol>
-<ol start="3">
+<ol>
 <li><p><strong>配置Nginx托管目录</strong></p>
 <p>3.1. 创建<code>/var/www/hexo</code>目录，用于Nginx托管</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /var/www/hexo</span><br><span class="line">chown -R <span class="variable">$USER</span>:<span class="variable">$USER</span> /var/www/hexo</span><br><span class="line">chmod -R 755 /var/www/hexo</span><br></pre></td></tr></table></figure>
-
 <p>3.2. 修改Nginx配置</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/sites-enabled/default</span><br><span class="line"><span class="comment"># 将 root /var/www/html 改为 root /var/www/hexo</span></span><br><span class="line"><span class="comment"># 保存退出</span></span><br></pre></td></tr></table></figure>
-
 <p>3.3. 重启nginx</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>创建私有git仓库</strong></p>
 <p>4.1. 创建用户：git，用于运行git服务</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser git</span><br></pre></td></tr></table></figure>
-
 <p>4.2. 将本机的SSH公钥：<code>.ssh</code>目录下的<code>id_rsa.pub</code>内容添加到<code>/home/git/.ssh/authorized_keys</code>文件中。</p>
 <p>4.3. 在<code>/home/git</code>下创建一个名为<code>hexo.git</code>的裸仓库</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init --bare hexo.git</span><br></pre></td></tr></table></figure>
-
 <p>4.4. 创建Git钩子，在满足条件情况下将静态文件传送到Web服务器目录，即<code>/var/www/hexo</code></p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /home/git/hexo.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
-
 <p>4.5. 添加如下代码</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">git --work-tree=/var/www/hexo --git-dir=/home/git/hexo.git checkout -f</span><br></pre></td></tr></table></figure>
-
 <p>4.6. 保存并退出，将该文件变为可执行文件</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /home/git/hexo.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
-
 <p>4.7. 将<code>hexo.git</code>目录和网站目录的所有者改为git用户</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R git:git /home/git/hexo.git</span><br><span class="line">sudo chown -R git:git /var/www/hexo</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
 <p>至此，结束服务器端配置。</p>
@@ -467,7 +454,6 @@
 </li>
 <li><p>之后就能通过以下命令，完成博客的更新了。</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
 <h3 id="引用："><a href="#引用：" class="headerlink" title="引用："></a>引用：</h3><ul>
@@ -798,7 +784,24 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
@@ -842,28 +845,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
 
   
 

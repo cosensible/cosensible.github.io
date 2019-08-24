@@ -394,8 +394,7 @@
         
           
             <h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><ol>
-<li><p>Vim版本大于等于7.4，并且支持python2或python3。</p>
-</li>
+<li>Vim版本大于等于7.4，并且支持python2或python3。</li>
 <li><p>编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install build-essential cmake python3-dev</span><br></pre></td></tr></table></figure>
 </li>
@@ -416,10 +415,8 @@
 <li>以上选项都必须满足相应依赖；<code>--all</code>则会编译以上所有满足依赖的选项。</li>
 </ul>
 </li>
-<li><p>必须要在<code>.vimrc</code>的插件列表中引用该插件。</p>
-</li>
-<li><p><code>.vimrc</code>文件中的ycm配置项的python解释器应该与编译YouCompleteMe时所用的python版本一致。</p>
-</li>
+<li>必须要在<code>.vimrc</code>的插件列表中引用该插件。</li>
+<li><code>.vimrc</code>文件中的ycm配置项的python解释器应该与编译YouCompleteMe时所用的python版本一致。</li>
 </ol>
 
           
@@ -622,7 +619,6 @@
 <h1 id="第一部分：数据结构与对象"><a href="#第一部分：数据结构与对象" class="headerlink" title="第一部分：数据结构与对象"></a>第一部分：数据结构与对象</h1><h2 id="第2章：简单动态字符串（SDS）"><a href="#第2章：简单动态字符串（SDS）" class="headerlink" title="第2章：简单动态字符串（SDS）"></a>第2章：简单动态字符串（SDS）</h2><p>Redis没有直接使用C字符串，在Redis里C字符串只会作为字符串字面量，用在无须修改字符串值的地方。当Redis需要一个可以被修改的字符串值时会使用SDS。SDS不仅可以用来保存字符串值，还能被用作缓冲区：AOF缓冲区、客户端状态中的输入缓冲区。</p>
 <h3 id="2-1：SDS的定义"><a href="#2-1：SDS的定义" class="headerlink" title="2.1：SDS的定义"></a>2.1：SDS的定义</h3><p>每个sds.h/sdshdr结构表示一个SDS值：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sdshdr</span> &#123;</span></span><br><span class="line">    <span class="comment">// 记录buf数组中已使用字节的数量</span></span><br><span class="line">    <span class="comment">// 等于SDS所保存字符串的长度</span></span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 记录buf数组中未使用字节的数量</span></span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">free</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 字节数组，用于保存字符串</span></span><br><span class="line">    <span class="keyword">char</span> buf[];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <p>SDS和C字符串一样，以空字符结尾。保存空字符的1字节不算在len属性里，SDS自动为空字符分配额外的1字节且将空字符添加到字符串末尾。所以这个空字符对用户完全透明。以空字符结尾的好处是SDS可以重用C字符串函数库里面的一部分函数。</p>
 <h3 id="2-2：SDS与C字符串的区别"><a href="#2-2：SDS与C字符串的区别" class="headerlink" title="2.2：SDS与C字符串的区别"></a>2.2：SDS与C字符串的区别</h3><h4 id="2-2-1：常数复杂度获取字符串长度"><a href="#2-2-1：常数复杂度获取字符串长度" class="headerlink" title="2.2.1：常数复杂度获取字符串长度"></a>2.2.1：常数复杂度获取字符串长度</h4><p>C字符串不记录自身的长度信息，所以为获取其长度需要遍历一遍。</p>
 <p>获取一个SDS的长度只要常数时间，设置和更新SDS长度的工作由SDS的API在执行时自动完成。</p>
@@ -638,15 +634,17 @@
 <p>此外，SDS提供了API让我们在需要时真正地释放SDS的未使用空间。</p>
 <h4 id="2-2-4：二进制安全"><a href="#2-2-4：二进制安全" class="headerlink" title="2.2.4：二进制安全"></a>2.2.4：二进制安全</h4><p>C字符串必须符合某种编码，且除了字符串末尾外，字符串里面不能包含空字符。这些限制使其只能保存文本数据，而不能保存图片、音频、视频、压缩文件等二进制数据。</p>
 <p>所有SDS API都会以处理二进制的方式来处理buf数组（字节数组）里面的数据。SDS用len的值而不是空字符来判断字符串是否结束。</p>
-<h4 id="2-2-5：兼容部分C字符串函数"><a href="#2-2-5：兼容部分C字符串函数" class="headerlink" title="2.2.5：兼容部分C字符串函数"></a>2.2.5：兼容部分C字符串函数</h4><p>SDS遵循C字符串以空字符结尾的惯例，这使得保存文本数据的SDS可以重用一部分&lt;string.h&gt;库定义的函数。</p>
-<h4 id="2-2-6：总结"><a href="#2-2-6：总结" class="headerlink" title="2.2.6：总结"></a>2.2.6：总结</h4><table>
+<h4 id="2-2-5：兼容部分C字符串函数"><a href="#2-2-5：兼容部分C字符串函数" class="headerlink" title="2.2.5：兼容部分C字符串函数"></a>2.2.5：兼容部分C字符串函数</h4><p>SDS遵循C字符串以空字符结尾的惯例，这使得保存文本数据的SDS可以重用一部分<string.h>库定义的函数。</string.h></p>
+<h4 id="2-2-6：总结"><a href="#2-2-6：总结" class="headerlink" title="2.2.6：总结"></a>2.2.6：总结</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>C字符串</th>
 <th>SDS</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>获取字符串长度的复杂度为O(N)</td>
 <td>获取字符串长度的复杂度为O(1)</td>
 </tr>
@@ -663,11 +661,14 @@
 <td>可以保存文本数据或二进制数据</td>
 </tr>
 <tr>
-<td>可以使用&lt;string.h&gt;库中的所有函数</td>
-<td>可以使用部分&lt;string.h&gt;库中的函数</td>
+<td>可以使用<string.h>库中的所有函数</string.h></td>
+<td>可以使用部分<string.h>库中的函数</string.h></td>
 </tr>
-</tbody></table>
-<h3 id="2-3：SDS-API"><a href="#2-3：SDS-API" class="headerlink" title="2.3：SDS API"></a>2.3：SDS API</h3><table>
+</tbody>
+</table>
+</div>
+<h3 id="2-3：SDS-API"><a href="#2-3：SDS-API" class="headerlink" title="2.3：SDS API"></a>2.3：SDS API</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>函数</th>
@@ -675,7 +676,8 @@
 <th>时间复杂度</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>sdsnew</td>
 <td>创建包含给定C字符串的SDS</td>
 <td>O(N)，N为字符串长度</td>
@@ -745,7 +747,9 @@
 <td>比较两个SDS字符串是否相同</td>
 <td>O(N)，N为较短SDS的长度</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="2-4：重点回顾"><a href="#2-4：重点回顾" class="headerlink" title="2.4：重点回顾"></a>2.4：重点回顾</h3><p>Redis只会使用C字符串作为字面量，大多情况下，Redis使用SDS表示字符串。</p>
 <p>SDS具有如下优点：</p>
 <ul>
@@ -758,14 +762,11 @@
 <h2 id="第3章：链表"><a href="#第3章：链表" class="headerlink" title="第3章：链表"></a>第3章：链表</h2><p>链表用在：列表键实现、发布与订阅、慢查询、监视器、保存客户端状态信息、构建客户端输出缓冲区等</p>
 <h3 id="3-1：链表和链表节点的实现"><a href="#3-1：链表和链表节点的实现" class="headerlink" title="3.1：链表和链表节点的实现"></a>3.1：链表和链表节点的实现</h3><p>链表节点adlist.h/listNode</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">listNode</span>&#123;</span></span><br><span class="line">    <span class="comment">// 前置节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">listNode</span> *<span class="title">prev</span>;</span></span><br><span class="line">    <span class="comment">// 后置节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">listNode</span> *<span class="title">next</span>;</span></span><br><span class="line">    <span class="comment">// 节点的值</span></span><br><span class="line">    <span class="keyword">void</span> *value;</span><br><span class="line">&#125;listNode;</span><br></pre></td></tr></table></figure>
-
 <p>使用adlist.h/list来持有链表，使链表操作更方便</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">list</span>&#123;</span></span><br><span class="line">    <span class="comment">// 表头节点</span></span><br><span class="line">    listNode *head;</span><br><span class="line">    <span class="comment">// 表尾节点</span></span><br><span class="line">    listNode *tail;</span><br><span class="line">    <span class="comment">// 链表包含的节点数</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> len;</span><br><span class="line">    <span class="comment">// 节点值复制函数</span></span><br><span class="line">    <span class="keyword">void</span> *(*dup)(<span class="keyword">void</span> *ptr);</span><br><span class="line">    <span class="comment">// 节点值释放函数</span></span><br><span class="line">    <span class="keyword">void</span> (*<span class="built_in">free</span>)(<span class="keyword">void</span> *ptr);</span><br><span class="line">    <span class="comment">// 节点值对比函数</span></span><br><span class="line">    <span class="keyword">int</span> (*match)(<span class="keyword">void</span> *ptr,<span class="keyword">void</span> *key);</span><br><span class="line">&#125;<span class="built_in">list</span>;</span><br></pre></td></tr></table></figure>
-
 <p>dup、free、match成员用于实现多态链表所需的类型特定函数。</p>
 <p>双端链表迭代器结构</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">listIter</span> &#123;</span></span><br><span class="line">    <span class="comment">// 当前迭代到的节点</span></span><br><span class="line">    listNode *next;</span><br><span class="line">    <span class="comment">// 迭代的方向</span></span><br><span class="line">    <span class="keyword">int</span> direction;</span><br><span class="line">&#125; listIter;</span><br></pre></td></tr></table></figure>
-
 <p>Redis链表实现特性：</p>
 <ul>
 <li>双端、无环（表头节点的prev和表尾节点的tail都指向NULL，对链表的访问以NULL为终点）</li>
@@ -773,14 +774,16 @@
 <li>带链表长度计数器（list结构的len属性）</li>
 <li>多态：链表节点使用void*指针保存节点值，且可以通过list结构的dup、free、match属性为节点值设置类型特定函数，所以链表可以保存各种类型的值。</li>
 </ul>
-<h3 id="3-2：链表和链表节点的API"><a href="#3-2：链表和链表节点的API" class="headerlink" title="3.2：链表和链表节点的API"></a>3.2：链表和链表节点的API</h3><table>
+<h3 id="3-2：链表和链表节点的API"><a href="#3-2：链表和链表节点的API" class="headerlink" title="3.2：链表和链表节点的API"></a>3.2：链表和链表节点的API</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>函数</th>
 <th>作用</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>listSetDupMethod</td>
 <td>将给定函数设置为链表的节点值复制函数</td>
 </tr>
@@ -868,38 +871,35 @@
 <td>listRelease</td>
 <td>释放给定链表以及链表中的所有节点</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="第4章：字典"><a href="#第4章：字典" class="headerlink" title="第4章：字典"></a>第4章：字典</h2><p>Redis数据库使用字典作为底层实现，对数据库的增删改查都基于字典的操作。</p>
 <p>字典也是哈希键的底层实现之一。</p>
 <h3 id="4-1：字典的实现"><a href="#4-1：字典的实现" class="headerlink" title="4.1：字典的实现"></a>4.1：字典的实现</h3><p>Redis字典使用哈希表作为底层实现，一个哈希表有多个哈希表节点，每个哈希表节点保存字典中的一个键值对。</p>
 <h4 id="4-1-1：哈希表"><a href="#4-1-1：哈希表" class="headerlink" title="4.1.1：哈希表"></a>4.1.1：哈希表</h4><p>dict.h/dictht结构，其中table是一个数组，保存指向dict.h/dictEntry结构的指针，每个dictEntry保存一个键值对。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">dictht</span>&#123;</span></span><br><span class="line">    <span class="comment">// 哈希表数组</span></span><br><span class="line">    dictEntry **table;</span><br><span class="line">    <span class="comment">// 哈希表大小，即table数组大小</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> size;</span><br><span class="line">    <span class="comment">// 哈希表大小掩码，用于计算索引值</span></span><br><span class="line">    <span class="comment">// 总是等于 size-1</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> sizemask;</span><br><span class="line">    <span class="comment">// 该哈希表已有节点数</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> used;</span><br><span class="line">&#125; dictht;</span><br></pre></td></tr></table></figure>
-
 <h4 id="4-1-2：哈希表节点"><a href="#4-1-2：哈希表节点" class="headerlink" title="4.1.2：哈希表节点"></a>4.1.2：哈希表节点</h4><p>dictEntry结构，保存键值对</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">dictEntry</span>&#123;</span></span><br><span class="line">    <span class="comment">// 键</span></span><br><span class="line">    viod *key;</span><br><span class="line">    <span class="comment">// 值，可以是一个指针、uint64_t整数或int64_t整数</span></span><br><span class="line">    <span class="keyword">union</span>&#123;</span><br><span class="line">        <span class="keyword">void</span> *val;</span><br><span class="line">        <span class="keyword">uint64_t</span> u64;</span><br><span class="line">        <span class="keyword">int64_t</span> s64;</span><br><span class="line">    &#125;v;</span><br><span class="line">    <span class="comment">// 指向下个哈希表节点，链地址法解决哈希冲突</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">dictEntry</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;dictEntry;</span><br></pre></td></tr></table></figure>
-
 <h4 id="4-1-3：字典"><a href="#4-1-3：字典" class="headerlink" title="4.1.3：字典"></a>4.1.3：字典</h4><p>dict.h/dict结构</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">dict</span>&#123;</span></span><br><span class="line">    <span class="comment">// 类型特定函数</span></span><br><span class="line">    dictType *type;</span><br><span class="line">    <span class="comment">// 私有数据</span></span><br><span class="line">    <span class="keyword">void</span> *privdata;</span><br><span class="line">    <span class="comment">// 哈希表</span></span><br><span class="line">    dictht ht[<span class="number">2</span>];</span><br><span class="line">    <span class="comment">// rehash索引</span></span><br><span class="line">    <span class="comment">// 当rehash不在进行时，值为-1</span></span><br><span class="line">    <span class="keyword">int</span> rehashidx;</span><br><span class="line">&#125;dict;</span><br></pre></td></tr></table></figure>
-
 <p>type和privdata属性针对不同类型的键值对，为创建多态字典设置：</p>
 <ul>
 <li>type属性为指向dictType结构的指针，每个dictType保存一簇用于操作特定类型键值对的函数。</li>
 <li>privdata属性保存需要传给类型特定函数的可选参数</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">dictType</span>&#123;</span></span><br><span class="line">    <span class="comment">// 计算哈希值的函数</span></span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="title">int</span> <span class="params">(*hashFunction)</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> *key)</span></span>;</span><br><span class="line">    <span class="comment">// 复制键的函数</span></span><br><span class="line">    <span class="keyword">void</span> *(*keyDup)(<span class="keyword">void</span> *privdata,<span class="keyword">const</span> <span class="keyword">void</span> *key);</span><br><span class="line">    <span class="comment">// 复制值的函数</span></span><br><span class="line">    <span class="keyword">void</span> *(*valDup)(<span class="keyword">void</span> *privdata,<span class="keyword">const</span> <span class="keyword">void</span> *obj);</span><br><span class="line">    <span class="comment">// 对比键的函数</span></span><br><span class="line">    <span class="keyword">int</span> (*keyCompare)(<span class="keyword">void</span> *privdata,<span class="keyword">const</span> <span class="keyword">void</span> *key1,<span class="keyword">const</span> <span class="keyword">void</span> *key2);</span><br><span class="line">    <span class="comment">// 销毁键的函数</span></span><br><span class="line">    <span class="keyword">void</span> (*keyDestructor)(<span class="keyword">void</span> *privdata,<span class="keyword">void</span> *key);</span><br><span class="line">    <span class="comment">// 销毁值的函数</span></span><br><span class="line">    <span class="keyword">void</span> (*valDestructor)(<span class="keyword">void</span> *privdata,<span class="keyword">void</span> *obj);</span><br><span class="line">&#125;dictType;</span><br></pre></td></tr></table></figure>
-
 <p>ht属性是一个包含两个项的数组，其中每项是一个dictht哈希表，ht[1]只会在对ht[0]进行rehash时使用。</p>
 <p>rehashidx属性记录目前rehash的进度，若没有进行rehash，其值为-1。</p>
 <h3 id="4-2：哈希算法"><a href="#4-2：哈希算法" class="headerlink" title="4.2：哈希算法"></a>4.2：哈希算法</h3><p>当要将一个新的键值对添加到字典里时，程序先根据键计算哈希值和索引值，然后根据索引值将包含新键值对的哈希表节点放到哈希表数组中。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用字典设置的哈希函数，计算键key的哈希值</span></span><br><span class="line">hash=dict-&gt;type-&gt;hashFunction(key);</span><br><span class="line"><span class="comment">// 使用哈希表的sizemask和哈希值，计算索引值</span></span><br><span class="line"><span class="comment">// 根据情况不同，ht[x]可以是ht[0]或ht[1]</span></span><br><span class="line">index=hash &amp; dict-&gt;ht[x].sizemask;</span><br></pre></td></tr></table></figure>
-
 <p>当字典用于数据库或哈希键底层实现时，Redis使用MurmurHash2算法计算键的哈希值。该算法优点在于，即使输入的键是有规律的，算法仍有很好的随机分布性，且算法的计算速度非常快。</p>
 <h3 id="4-3：解决键冲突"><a href="#4-3：解决键冲突" class="headerlink" title="4.3：解决键冲突"></a>4.3：解决键冲突</h3><p>Redis的哈希表使用链地址法来解决键冲突。</p>
 <p>因为dictEntry节点组成的链表没有指向链表表尾的指针，所以为了速度，程序总将新节点添加到链表表头。</p>
 <h3 id="4-4：Rehash"><a href="#4-4：Rehash" class="headerlink" title="4.4：Rehash"></a>4.4：Rehash</h3><p>随着操作不断执行，哈希表中的键值对会逐渐增多或减少，为了让哈希表的负载因子维持在合理范围，程序需要对哈希表大小进行扩展或收缩。rehash(重散列)步骤如下：</p>
 <ol>
 <li>为字典的ht[1]哈希表分配空间，大小取决于执行的操作以及ht[0]当前包含的键值对数量（ht[0].used）<ul>
-<li>若执行扩展操作，ht[1]的大小为第一个大于等于ht[0].used<em>2的*</em>$2^n$**；</li>
+<li>若执行扩展操作，ht[1]的大小为第一个大于等于ht[0].used<em>2的<em>*$2^n$</em></em>；</li>
 <li>若执行收缩操作，ht[1]的大小为第一个大于等于ht[0].used的<strong>$2^n$</strong>。</li>
 </ul>
 </li>
@@ -926,14 +926,16 @@
 <p><strong>渐进式rehash执行期间的哈希表操作</strong></p>
 <p>因为在渐进式rehash期间，字典会同时使用ht[0]和ht[1]，所以在此期间，字典的删除、更新、查找操作会在两个哈希表上进行。例如，查找会先在ht[0]查找，没找到会在ht[1]继续查找。</p>
 <p>另外，在渐进式rehash期间，新添加到字典的键值对会一律保存到ht[1]中，ht[0]上不进行任何添加操作，保证ht[0]包含的键值对数量不断减少，并随着rehash操作最终变为空表。</p>
-<h3 id="4-6：字典API"><a href="#4-6：字典API" class="headerlink" title="4.6：字典API"></a>4.6：字典API</h3><table>
+<h3 id="4-6：字典API"><a href="#4-6：字典API" class="headerlink" title="4.6：字典API"></a>4.6：字典API</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>函数</th>
 <th>作用</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>dictCreate</td>
 <td>创建新字典O(1)</td>
 </tr>
@@ -961,12 +963,13 @@
 <td>dictRelease</td>
 <td>释放字典以及字典中的所有键值对O(N)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="第5章：跳跃表"><a href="#第5章：跳跃表" class="headerlink" title="第5章：跳跃表"></a>第5章：跳跃表</h2><p>有序数据结构，通过在每个节点中维持多个指向其他节点的指针来达到快速访问节点的目的。支持平均$O(logN)$、最坏$O(N)$复杂度的节点查找，还能通过顺序性操作来批量处理节点。Redis使用跳跃表作为有序集合键的底层实现之一。</p>
 <p>Redis只在两个地方用到了跳跃表：实现有序集合键、在集群节点中用作内部数据结构</p>
 <h3 id="5-1：跳跃表的实现"><a href="#5-1：跳跃表的实现" class="headerlink" title="5.1：跳跃表的实现"></a>5.1：跳跃表的实现</h3><p>Redis跳跃表由redis.h/zskiplistNode和redis.h/zskiplist两个结构定义，前者表示跳跃表节点，后者保存跳跃表相关信息（节点数量、表头节点、表尾节点等）</p>
 <h4 id="5-1-1：跳跃表节点"><a href="#5-1-1：跳跃表节点" class="headerlink" title="5.1.1：跳跃表节点"></a>5.1.1：跳跃表节点</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistNode</span>&#123;</span></span><br><span class="line">    <span class="comment">// 后退指针</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistNode</span> *<span class="title">backward</span>;</span></span><br><span class="line">    <span class="comment">// 分值</span></span><br><span class="line">    <span class="keyword">double</span> score;</span><br><span class="line">    <span class="comment">// 成员对象</span></span><br><span class="line">    robj *obj;</span><br><span class="line">    <span class="comment">// 层</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistLevel</span>&#123;</span></span><br><span class="line">        <span class="comment">// 前进指针</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistNode</span> *<span class="title">forward</span>;</span></span><br><span class="line">        <span class="comment">// 跨度</span></span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> span;</span><br><span class="line">    &#125;level[];</span><br><span class="line">&#125;zskiplistNode;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><strong>层</strong>：跳跃表节点的level数组可包含多个元素，每个元素包含一个指向其他节点的指针，程序可以通过这些层来加快访问其他节点的速度。每次创建一个新的跳跃表节点时，都根据幂次定律（越大的数出现的概率越小）随机生成一个介于1到32之间的值作为level数组的大小，该大小为层的“高度”。</li>
 <li><strong>前进指针</strong>：每个层包含一个指向表尾方向的前进指针。</li>
@@ -976,8 +979,8 @@
 <li>只会用到表头节点的各个层，其他属性不会被用到。</li>
 </ul>
 <h4 id="5-1-2：跳跃表"><a href="#5-1-2：跳跃表" class="headerlink" title="5.1.2：跳跃表"></a>5.1.2：跳跃表</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">zskiplist</span>&#123;</span></span><br><span class="line">    <span class="comment">// 表头节点和表尾节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">zskiplistNode</span> *<span class="title">header</span>,*<span class="title">tail</span>;</span></span><br><span class="line">    <span class="comment">// 表中节点数量（不含表头节点）</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> length;</span><br><span class="line">    <span class="comment">// 表中层数最大节点的层数（不含表头节点）</span></span><br><span class="line">    <span class="keyword">int</span> level;</span><br><span class="line">&#125;zskiplist;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-2：跳跃表API"><a href="#5-2：跳跃表API" class="headerlink" title="5.2：跳跃表API"></a>5.2：跳跃表API</h3><table>
+<h3 id="5-2：跳跃表API"><a href="#5-2：跳跃表API" class="headerlink" title="5.2：跳跃表API"></a>5.2：跳跃表API</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>函数</th>
@@ -985,7 +988,8 @@
 <th>时间复杂度</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>zslCreate</td>
 <td>创建跳跃表</td>
 <td>O(1)</td>
@@ -1040,12 +1044,13 @@
 <td>给定一个范围，删除跳跃表中所有排位在范围内的节点</td>
 <td>O(N)，N为被删节点数</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="第6章：整数集合"><a href="#第6章：整数集合" class="headerlink" title="第6章：整数集合"></a>第6章：整数集合</h2><p>当一个集合只包含整数值元素，且元素数量不多时，Redis使用整数集合作为集合键的底层实现。</p>
 <h3 id="6-1：整数集合的实现"><a href="#6-1：整数集合的实现" class="headerlink" title="6.1：整数集合的实现"></a>6.1：整数集合的实现</h3><p>整数集合可以保存int16_t、int32_t、或int64_t的整数值，并且会保证集合中无重复元素。</p>
 <p>intset.h/intset结构：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">intset</span>&#123;</span></span><br><span class="line">    <span class="comment">// 编码方式</span></span><br><span class="line">    <span class="keyword">uint32_t</span> encoding;</span><br><span class="line">    <span class="comment">// 集合包含的元素数量</span></span><br><span class="line">    <span class="keyword">uint32_t</span> length;</span><br><span class="line">    <span class="comment">// 保存元素的数组</span></span><br><span class="line">    <span class="keyword">int8_t</span> contents[];</span><br><span class="line">&#125;intset;</span><br></pre></td></tr></table></figure>
-
 <p>整数集合的每个元素是contents数组的数据项，各项在数组中从小到大排列，且数组中无重复项。</p>
 <p>虽然intset结构将contents声明为int8_t，但该数组并不保存任何int8_t类型的值，其真正类型取决于encoding的值：INTSET_ENC_INT16、INTSET_ENC_INT32、INTSET_ENC_INT64。</p>
 <h3 id="6-2：升级"><a href="#6-2：升级" class="headerlink" title="6.2：升级"></a>6.2：升级</h3><p>每当将一个新元素添加到整数集合中，且新元素类型比整数集合当前类型要长时，整数集合要进行升级，然后才能添加新元素。步骤如下：</p>
@@ -1059,7 +1064,8 @@
 <h3 id="6-3：升级的好处"><a href="#6-3：升级的好处" class="headerlink" title="6.3：升级的好处"></a>6.3：升级的好处</h3><h4 id="6-3-1：提高灵活性"><a href="#6-3-1：提高灵活性" class="headerlink" title="6.3.1：提高灵活性"></a>6.3.1：提高灵活性</h4><p>因为C语言是静态类型语言，为了避免类型错误，不会将两种不同类型的数据放在同一个数据结构中。但是整数集合可以通过自动升级底层数组来存放新元素，所以能随意添加int16_t、int32_t、int64_t类型的数据。</p>
 <h4 id="6-3-2：节约内存"><a href="#6-3-2：节约内存" class="headerlink" title="6.3.2：节约内存"></a>6.3.2：节约内存</h4><p>整数集合能添加三种不同类型的值，且能确保升级操作只会在有需要时进行，尽量节省内存。</p>
 <h3 id="6-4：降级"><a href="#6-4：降级" class="headerlink" title="6.4：降级"></a>6.4：降级</h3><p>整数集合不支持降级操作，一旦升级，编码会一直保持升级后的状态。</p>
-<h3 id="6-5：整数集合API"><a href="#6-5：整数集合API" class="headerlink" title="6.5：整数集合API"></a>6.5：整数集合API</h3><table>
+<h3 id="6-5：整数集合API"><a href="#6-5：整数集合API" class="headerlink" title="6.5：整数集合API"></a>6.5：整数集合API</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>函数</th>
@@ -1067,7 +1073,8 @@
 <th>时间复杂度</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>intsetNew</td>
 <td>创建整数集合</td>
 <td>O(1)</td>
@@ -1107,7 +1114,9 @@
 <td>返回整数集合占用字节数</td>
 <td>O(1)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="第7章：压缩列表"><a href="#第7章：压缩列表" class="headerlink" title="第7章：压缩列表"></a>第7章：压缩列表</h2><p>压缩列表（ziplist）是列表键和哈希键的底层实现之一：</p>
 <ol>
 <li>当一个列表键只包含少量列表项，且每个列表项是小整数值或长度较短的字符串时</li>
@@ -1115,6 +1124,7 @@
 </ol>
 <h3 id="7-1：压缩列表的构成"><a href="#7-1：压缩列表的构成" class="headerlink" title="7.1：压缩列表的构成"></a>7.1：压缩列表的构成</h3><p>压缩列表是redis为了节约内存开发的，是由一系列特殊编码的连续内存块组成的顺序型结构。一个压缩列表可以包含任意个节点（entry），每个节点保存一个字节数组或一个整数值。</p>
 <p>压缩列表各组成部分如下：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1124,7 +1134,8 @@
 <th>用途</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>zlbytes</td>
 <td>uint32_t</td>
 <td>4字节</td>
@@ -1154,7 +1165,9 @@
 <td>1字节</td>
 <td>特殊值0xFF(十进制255)，用于标记列表末端</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="7-2-压缩列表节点的构成"><a href="#7-2-压缩列表节点的构成" class="headerlink" title="7.2:压缩列表节点的构成"></a>7.2:压缩列表节点的构成</h3><p>每个压缩列表节点可以保存一个字节数组或一个整数值：</p>
 <ol>
 <li>字节数组的长度可以是：小于等于63($2^6-1$)、16383($2^{14}-1$)或($2^{32}-1$)字节。</li>
@@ -1169,6 +1182,7 @@
 <p>程序可以通过指针运算，根据当前节点的起始地址计算前一个节点的起始地址，且可以一直回溯到表头节点。</p>
 <h4 id="7-2-2：encoding"><a href="#7-2-2：encoding" class="headerlink" title="7.2.2：encoding"></a>7.2.2：encoding</h4><p>encoding属性记录节点的content属性所保存数据的<strong>类型和长度</strong>：</p>
 <p>字节数组编码：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1177,7 +1191,8 @@
 <th>content属性保存的值</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>00bbbbbb</td>
 <td>1字节</td>
 <td>长度小于等于($2^6-1$)字节的字节数组</td>
@@ -1188,12 +1203,15 @@
 <td>长度小于等于($2^{14}-1$)字节的字节数组</td>
 </tr>
 <tr>
-<td>10________ aaaaaaaa bbbbbbbb cccccccc dddddddd</td>
+<td>10<strong><em>__</em></strong> aaaaaaaa bbbbbbbb cccccccc dddddddd</td>
 <td>5字节</td>
 <td>长度小于等于($2^{32}-1$)字节的字节数组</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>整数编码：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1202,7 +1220,8 @@
 <th>content属性保存的值</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>11000000</td>
 <td>1字节</td>
 <td>int16_t类型的整数</td>
@@ -1232,7 +1251,9 @@
 <td>1字节</td>
 <td>使用这一编码的节点无content属性，xxxx四位保存(0,12)之间的值</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="7-2-3：content"><a href="#7-2-3：content" class="headerlink" title="7.2.3：content"></a>7.2.3：content</h4><p>节点的content属性保存节点的值，节点值可以是一个字节数组或整数，其类型和长度由节点的encoding属性决定。</p>
 <h3 id="7-3：连锁更新"><a href="#7-3：连锁更新" class="headerlink" title="7.3：连锁更新"></a>7.3：连锁更新</h3><p>每个节点的previous_entry_length属性都记录了前一个节点的长度，如果前一节点长度小于254字节，该属性需要一字节，否则需要5字节。当在压缩列表中插入或删除节点时，可能会对压缩列表节点的previous_entry_length属性执行空间重分配操作（由于内存连续，每次内存重分配需要复杂度O(N)），从而引起后面一系列节点的空间重分配操作，Redis将这种特殊情况下产生的连续多次空间扩展操作称为“连锁更新”。连锁更新在最坏情况下需要对压缩列表执行N次空间重分配操作，每次内存重分配最坏复杂度为O(N)，所以连锁更新最坏复杂度为O(N方)。</p>
 <p>尽管连锁更新复杂度较高，但它造成性能问题的几率很低：</p>
@@ -1241,7 +1262,8 @@
 <li>即使出现连锁更新，只要数量不多，就不会对性能造成影响。</li>
 </ol>
 <p>基于以上原因，ziplistPush等命令的平均复杂度仅为O(N)，实际中可以放心使用</p>
-<h3 id="7-4：压缩列表API"><a href="#7-4：压缩列表API" class="headerlink" title="7.4：压缩列表API"></a>7.4：压缩列表API</h3><table>
+<h3 id="7-4：压缩列表API"><a href="#7-4：压缩列表API" class="headerlink" title="7.4：压缩列表API"></a>7.4：压缩列表API</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>函数</th>
@@ -1249,7 +1271,8 @@
 <th>复杂度</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>ziplistNew</td>
 <td>创建压缩列表</td>
 <td>O(1)</td>
@@ -1309,15 +1332,17 @@
 <td>返回压缩列表包含的节点数</td>
 <td>节点数小于65535时O(1)，否则为O(N)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="第8章：对象"><a href="#第8章：对象" class="headerlink" title="第8章：对象"></a>第8章：对象</h2><p>在前面各章节中，介绍了Redis用到的所有数据结构：简单动态字符串(SDS)、双端链表、字典、压缩列表、整数集合、跳跃表。Redis基于这些数据结构创建了一个对象系统，包含字符串对象、列表对象、哈希对象、集合对象和有序集合对象。Redis可以在执行命令前根据对象类型判断一个对象是否能执行给定命令；可以针对不同使用场景为对象设置多种数据结构的实现，优化对象使用效率。</p>
 <p>Redis对象系统实现了基于引用计数的内存回收机制，当程序不再使用某对象时，其内存会被自动释放；Redis还实现了基于引用计数的对象共享机制，可以通过让多个数据库键共享同一个对象来节约内存；Redis对象带有访问时间记录信息，可用于计算数据库键的空转时间，在服务器启用maxmemory功能时，空转时长大的键会优先被删除。</p>
 <h3 id="8-1：对象的类型与编码"><a href="#8-1：对象的类型与编码" class="headerlink" title="8.1：对象的类型与编码"></a>8.1：对象的类型与编码</h3><p>Redis使用对象来表示数据库中的键和值，每当创建一个键值对，至少会创建两个对象，一个用作键（键对象），一个用作值（值对象）。每个对象由redisObject结构表示，其中和保存数据有关的三个属性如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">redisObject</span>&#123;</span></span><br><span class="line">    <span class="comment">// 类型</span></span><br><span class="line">    <span class="keyword">unsigned</span> type:<span class="number">4</span>;</span><br><span class="line">    <span class="comment">// 编码</span></span><br><span class="line">    <span class="keyword">unsigned</span> encoding:<span class="number">4</span>;</span><br><span class="line">    <span class="comment">// 指向底层数据结构的指针</span></span><br><span class="line">    <span class="keyword">void</span> *ptr;</span><br><span class="line"> 	<span class="comment">// ...</span></span><br><span class="line">&#125;robj;</span><br></pre></td></tr></table></figure>
-
 <h4 id="8-1-1-类型"><a href="#8-1-1-类型" class="headerlink" title="8.1.1:类型"></a>8.1.1:类型</h4><p>类型可以是：REDIS_STRING、REDIS_LIST、REDIS_HASH、REDIS_SET、REDIS_ZSET</p>
 <p>键总是一个字符串对象，而值可以是五种对象的其中一种，因此当称呼一个键为“列表键”时，指“该数据库键所对应的值为列表对象”。TYPE命令返回数据库键所对应的值对象的类型。</p>
 <h4 id="8-1-2：编码和底层实现"><a href="#8-1-2：编码和底层实现" class="headerlink" title="8.1.2：编码和底层实现"></a>8.1.2：编码和底层实现</h4><p>对象的ptr指针指向对象的底层数据结构，这些数据结构由encoding属性决定。encoding属性的值可以是：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1325,7 +1350,8 @@
 <th>编码对应的底层数据结构</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>REDIS_ENCODING_INT</td>
 <td>long类型整数</td>
 </tr>
@@ -1357,8 +1383,11 @@
 <td>REDIS_ENCODING_SKIPLIST</td>
 <td>跳跃表和字典</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>每种对象类型都至少使用了两种编码，即至少有两种底层实现：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1367,7 +1396,8 @@
 <th>对象</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>REDIS_STRING</td>
 <td>REDIS_ENCODING_INT</td>
 <td>使用整数值实现的字符串对象</td>
@@ -1422,7 +1452,9 @@
 <td>REDIS_ENCODING_SKIPLIST</td>
 <td>使用跳跃表和字典实现的有序集合对象</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>通过OBJECT ENCODING命令可查看一个数据库键的值对象所使用的编码。</p>
 <p>通过encoding属性设定对象所使用的编码，而不是为对象关联一种固定的编码，极大地提高了Redis的灵活性，Redis可以根据不同场景为对象设置合适的编码：</p>
 <ul>
@@ -1441,7 +1473,8 @@
 </ul>
 <h4 id="8-2-1：编码的转换"><a href="#8-2-1：编码的转换" class="headerlink" title="8.2.1：编码的转换"></a>8.2.1：编码的转换</h4><p>对于int编码的字符串对象，若向该对象执行某些命令（eg:append）使其不再是一个整数值，其编码变为raw。</p>
 <p>另外，因为Redis没有为embstr编码的字符串对象编写任何修改程序，所以embstr编码的字符串对象是只读的。当对其进行修改时，程序会将其编码从embstr转换为raw，再进行修改。所以embstr编码的字符串在执行修改命令之后总会变成一个raw编码的字符串对象。</p>
-<h4 id="8-2-2：字符串命令的实现"><a href="#8-2-2：字符串命令的实现" class="headerlink" title="8.2.2：字符串命令的实现"></a>8.2.2：字符串命令的实现</h4><table>
+<h4 id="8-2-2：字符串命令的实现"><a href="#8-2-2：字符串命令的实现" class="headerlink" title="8.2.2：字符串命令的实现"></a>8.2.2：字符串命令的实现</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>命令</th>
@@ -1450,7 +1483,8 @@
 <th>raw编码</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>SET</td>
 <td>用int编码保存值</td>
 <td>用embstr编码保存值</td>
@@ -1504,7 +1538,9 @@
 <td>直接取出给定索引上的字符</td>
 <td>同</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="8-3：列表对象"><a href="#8-3：列表对象" class="headerlink" title="8.3：列表对象"></a>8.3：列表对象</h3><p>列表对象的编码可以是ziplist或linkedlist。</p>
 <h4 id="8-3-1：编码转换"><a href="#8-3-1：编码转换" class="headerlink" title="8.3.1：编码转换"></a>8.3.1：编码转换</h4><p>当列表对象同时满足以下两个条件时，使用ziplist编码：</p>
 <ul>
@@ -1513,7 +1549,8 @@
 </ul>
 <p>以上两个条件的上限值可以修改，配置文件中list-max-ziplist-value和list-max-ziplist-entries</p>
 <p>当使用ziplist编码的列表对象不能满足条件时，会执行对象的编码转换操作，将保存在压缩列表中的所有列表元素转移到双端链表中，编码变为linkedlist。</p>
-<h4 id="8-3-2：列表命令的实现"><a href="#8-3-2：列表命令的实现" class="headerlink" title="8.3.2：列表命令的实现"></a>8.3.2：列表命令的实现</h4><table>
+<h4 id="8-3-2：列表命令的实现"><a href="#8-3-2：列表命令的实现" class="headerlink" title="8.3.2：列表命令的实现"></a>8.3.2：列表命令的实现</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>命令</th>
@@ -1521,7 +1558,8 @@
 <th>linkedlist编码</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>LPUSH</td>
 <td>调用ziplistPush，将新元素推入表头</td>
 <td>调用listAddNodeHead，将新元素插入表头</td>
@@ -1571,7 +1609,9 @@
 <td>先调用ziplistDelete删除指定索引上的节点，再调用ziplistInsert将包含给定元素的新节点插入到相同索引上</td>
 <td>调用listIndex定位指定索引上的节点，然后通过赋值操作更新节点值</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="8-4：哈希对象"><a href="#8-4：哈希对象" class="headerlink" title="8.4：哈希对象"></a>8.4：哈希对象</h3>
           
         
@@ -1725,7 +1765,7 @@
         
           
             <h2 id="1-TCP建立连接为什么是三次握手？"><a href="#1-TCP建立连接为什么是三次握手？" class="headerlink" title="1. TCP建立连接为什么是三次握手？"></a>1. TCP建立连接为什么是三次握手？</h2><p>在不可靠的信道上进行可靠的数据传输，至少要进行三次握手。如果小于三次，无法保证数据可靠传输；如果大于三次，存在资源浪费。<strong>防止已失效的连接请求报文段突然又传送到了服务端，因而产生错误</strong></p>
-<p><img src="https://asgroot.github.io/pictures/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.jpg" alt="三次握手图示"></p>
+<p><img src="https://asgroot.github.io/pictures/三次握手.jpg" alt="三次握手图示"></p>
 <p>PS：TCP协议中，主动发起请求的一端称为『客户端』，被动连接的一端称为『服务端』。不管是客户端还是服务端，TCP连接建立完后都能发送和接收数据。</p>
 <p>起初，服务器和客户端都为CLOSED状态。在通信开始前，双方都得创建各自的传输控制块（TCB）。<br>服务器创建完TCB后遍进入LISTEN状态，此时准备接收客户端发来的连接请求。</p>
 <p><strong>第一次握手</strong><br>客户端向服务端发送连接请求报文段。该报文段的头部中SYN=1，ACK=0，seq=x。请求发送后，客户端便进入SYN-SENT状态。</p>
@@ -1743,7 +1783,7 @@
 <p><strong>为什么连接建立需要三次握手，而不是两次握手？</strong><br>防止失效的连接请求报文段被服务端接收，从而产生错误。</p>
 <p>PS：失效的连接请求：若客户端向服务端发送的连接请求丢失，客户端等待应答超时后就会再次发送连接请求，此时，上一个连接请求就是『失效的』。</p>
 <p>若建立连接只需两次握手，客户端并没有太大的变化，仍然需要获得服务端的应答后才进入ESTABLISHED状态，而服务端在收到连接请求后就进入ESTABLISHED状态。此时如果网络拥塞，客户端发送的连接请求迟迟到不了服务端，客户端便超时重发请求。此时，如果那个失效的连接请求抵达了服务端，由于只有两次握手，服务端收到请求就会进入ESTABLISHED状态，等待发送数据或主动发送数据。但此时的客户端并没有进入ESTABLISHED状态，所以服务端将会一直等待下去，这样浪费服务端连接资源。</p>
-<h2 id="2-TCP释放连接-四次挥手"><a href="#2-TCP释放连接-四次挥手" class="headerlink" title="2. TCP释放连接-四次挥手"></a>2. TCP释放连接-四次挥手</h2><p><img src="https://asgroot.github.io/pictures/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.jpg" alt="四次挥手图示"></p>
+<h2 id="2-TCP释放连接-四次挥手"><a href="#2-TCP释放连接-四次挥手" class="headerlink" title="2. TCP释放连接-四次挥手"></a>2. TCP释放连接-四次挥手</h2><p><img src="https://asgroot.github.io/pictures/四次挥手.jpg" alt="四次挥手图示"></p>
 <p>TCP连接的释放一共需要四步，因此称为『四次挥手』。<br>我们知道，TCP连接是双向的，因此在四次挥手中，前两次挥手用于断开一个方向的连接，后两次挥手用于断开另一方向的连接。</p>
 <p><strong>第一次挥手</strong><br>若A认为数据发送完成，则它需要向B发送连接释放请求。该请求只有报文头，头中携带的主要参数为：<br>FIN=1，seq=u。此时，A将进入FIN-WAIT-1状态。</p>
 <ul>
@@ -1762,7 +1802,6 @@
 <p><strong>第四次挥手</strong><br>A收到释放请求后，向B发送确认应答，此时A进入TIME-WAIT状态。该状态会持续2MSL时间，若该时间段内没有B的重发请求的话，就进入CLOSED状态，撤销TCB。当B收到确认应答后，也便进入CLOSED状态，撤销TCB。</p>
 <p><strong>为什么A要先进入TIME-WAIT状态，等待2MSL时间后才进入CLOSED状态？</strong><br>为了保证B能收到A的确认应答。<br>若A发完确认应答后直接进入CLOSED状态，那么如果该应答丢失，B等待超时后就会重新发送连接释放请求，但此时A已经关闭了，不会作出任何响应，因此B永远无法正常关闭。</p>
 <h2 id="3-反转链表"><a href="#3-反转链表" class="headerlink" title="3. 反转链表"></a>3. 反转链表</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ActList* <span class="title">ReverseList3</span><span class="params">(ActList* <span class="built_in">list</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span>==<span class="built_in">list</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">list</span>;</span><br><span class="line">    ActList* head;</span><br><span class="line">    head-&gt;next=<span class="built_in">list</span>;</span><br><span class="line">	ActList* p=<span class="built_in">list</span>;</span><br><span class="line">	ActList* q;</span><br><span class="line">	<span class="keyword">while</span>(p-&gt;next!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">		q=p-&gt;next;</span><br><span class="line">		p-&gt;next=q-&gt;next;</span><br><span class="line">		q-&gt;next=head-&gt;next;</span><br><span class="line">		head-&gt;next=q;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> head-&gt;next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="4-虚函数的实现"><a href="#4-虚函数的实现" class="headerlink" title="4. 虚函数的实现"></a>4. 虚函数的实现</h2><h3 id="4-1-虚函数表"><a href="#4-1-虚函数表" class="headerlink" title="4.1. 虚函数表"></a>4.1. 虚函数表</h3><p><a href="https://jocent.me/2017/08/07/virtual-table.html" target="_blank" rel="noopener">https://jocent.me/2017/08/07/virtual-table.html</a></p>
 <p>一旦发现一个类型中有虚函数，就会为该类型生成一个虚函数表，并在该类型的每一个实例中添加一个指向该虚函数表的指针。</p>
 <h3 id="4-2-单继承下的虚函数表"><a href="#4-2-单继承下的虚函数表" class="headerlink" title="4.2. 单继承下的虚函数表"></a>4.2. 单继承下的虚函数表</h3><h4 id="派生类未覆盖基类虚函数"><a href="#派生类未覆盖基类虚函数" class="headerlink" title="派生类未覆盖基类虚函数"></a>派生类未覆盖基类虚函数</h4><p>虚函数表中依照声明顺序先放基类的虚函数地址，再放派生类的虚函数地址。</p>
@@ -1827,7 +1866,6 @@
 </ol>
 <p><strong>示例</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">10</span>); </span><br><span class="line"><span class="comment">//返回类型为int*类型，分配大小为 sizeof(int); </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> *pd=(<span class="keyword">double</span>*) <span class="built_in">malloc</span> (<span class="keyword">sizeof</span>(<span class="keyword">double</span>)*<span class="number">12</span>);</span><br><span class="line"><span class="comment">//分配12个double型存储单元，并将首地址存储到指针变量pd中</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> pi ;<span class="comment">// 释放单个对象</span></span><br><span class="line"><span class="keyword">delete</span> []pi;<span class="comment">//释放数组</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">free</span>(pd);<span class="comment">//释放malloc开辟的空间</span></span><br><span class="line">pd=<span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
-
 <h3 id="8-2-栈与堆"><a href="#8-2-栈与堆" class="headerlink" title="8.2. 栈与堆"></a>8.2. 栈与堆</h3><ul>
 <li><p>栈由编译器自动分配释放，存放函数的参数值、局部变量的值等。</p>
 </li>
@@ -2002,20 +2040,33 @@
 <p>$E=mc^2$</p>
 <p>$H$</p>
 <h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p><code>s</code></p>
-<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>$\alpha \in A$</p>
-<p>$$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$</p>
-<p>$H_2O$</p>
-<p>$$<br>\begin{align*}<br>\nonumber \sqrt{37}<br>&amp;= \sqrt{\frac{73^2-1}{12^2}} \\<br>\nonumber<br>&amp;= \sqrt{\frac{73^2}{12^2}\cdot\frac{73^2-1}{73^2}} \\<br>\nonumber<br>&amp;= \sqrt{\frac{73^2}{12^2}}\sqrt{\frac{73^2-1}{73^2}} \\<br>\nonumber<br>&amp;= \frac{73}{12}\sqrt{1 - \frac{1}{73^2}} \\<br>\nonumber<br>&amp;\approx \frac{73}{12}\left(1 - \frac{1}{2\cdot73^2}\right)<br>\end{align*}<br>$$</p>
-<p>$$<br>\mathbf{V}_1 \times \mathbf{V}_2 =<br>\begin{vmatrix}<br>\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\<br>\frac{\partial X}{\partial u} &amp; \frac{\partial Y}{\partial u} &amp; 0 \\<br>\frac{\partial X}{\partial v} &amp; \frac{\partial Y}{\partial v} &amp; 0 \\<br>\end{vmatrix}<br>$$</p>
-<p>$$<br>f(X,Y) = \sum_{i} \sum_{j} x_iy_j<br>$$<br>设$f(x,y) = Ke^{-(ax^2+2bxy+cy^2)}$，其中 $a&gt;0,c&gt;0,b^2-ac&lt;0$。如果$f$是密度函数，那么$K=___$。</p>
+<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>$ \alpha<em>\beta = \gamma</em>\delta $</p>
+<p>$\alpha \in A$</p>
+<script type="math/tex; mode=display">\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}</script><p>$H_2O$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\nonumber \sqrt{37}
+&= \sqrt{\frac{73^2-1}{12^2}} \\
+\nonumber
+&= \sqrt{\frac{73^2}{12^2}\cdot\frac{73^2-1}{73^2}} \\
+\nonumber
+&= \sqrt{\frac{73^2}{12^2}}\sqrt{\frac{73^2-1}{73^2}} \\
+\nonumber
+&= \frac{73}{12}\sqrt{1 - \frac{1}{73^2}} \\
+\nonumber
+&\approx \frac{73}{12}\left(1 - \frac{1}{2\cdot73^2}\right)
+\end{align}</script><script type="math/tex; mode=display">
+\mathbf{V}_1 \times \mathbf{V}_2 =
+\begin{vmatrix}
+\mathbf{i} & \mathbf{j} & \mathbf{k} \\
+\frac{\partial X}{\partial u} & \frac{\partial Y}{\partial u} & 0 \\
+\frac{\partial X}{\partial v} & \frac{\partial Y}{\partial v} & 0 \\
+\end{vmatrix}</script><script type="math/tex; mode=display">
+f(X,Y) = \sum_{i} \sum_{j} x_iy_j</script><p>设$f(x,y) = Ke^{-(ax^2+2bxy+cy^2)}$，其中 $a&gt;0,c&gt;0,b^2-ac&lt;0$。如果$f$是密度函数，那么$K=___$。</p>
 <h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Alice-&gt;Bob: Hello Bob, how are you?</span><br><span class="line">Note right of Bob: Bob thinks</span><br><span class="line">Bob--&gt;Alice: I am good,thanks!</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: Start</span><br><span class="line">op=&gt;operation: Your Operation</span><br><span class="line">cond=&gt;condition: Yes or No?</span><br><span class="line">e=&gt;end</span><br><span class="line"></span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;op</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[Hard edge] --&gt; B[Round edge]</span><br><span class="line">B --&gt; C&#123;Decision&#125;</span><br><span class="line">C --&gt; |One| D[Result One]</span><br><span class="line">C --&gt; |Two| E[Result Two]</span><br><span class="line">C --&gt; F[Result Three]</span><br></pre></td></tr></table></figure>
-
 
           
         
@@ -2170,16 +2221,12 @@
           
             <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
           
@@ -2338,8 +2385,7 @@
 <p>听室友说，Hexo用来搭建博客系统不错，于是便决定用它了。Hexo生成的是静态文件，所以可以在本地利用Hexo先生成静态文件，然后将这些静态文件通过git部署到服务器上，用Nginx做Web服务。由于hexo支持git的部署方式，所以可以实现从本地更新博客，非常方便。</p>
 <h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><h3 id="本机操作"><a href="#本机操作" class="headerlink" title="本机操作"></a>本机操作</h3><p><strong>由于本机是windows，所以这里以windows为例。</strong></p>
 <ol>
-<li><p>安装Node.js和Git</p>
-</li>
+<li>安装Node.js和Git</li>
 <li><p>生成SSH密钥(有就不用生成)：</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"email@example.com"</span> <span class="comment"># 一路回车</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -2359,47 +2405,35 @@
 </ol>
 <h3 id="服务器操作"><a href="#服务器操作" class="headerlink" title="服务器操作"></a>服务器操作</h3><ol>
 <li>连接服务器：这里我用git bash连接 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@&lt;ip地址&gt;</span><br></pre></td></tr></table></figure>
-
-
 </li>
 </ol>
-<ol start="2">
+<ol>
 <li>在服务器上安装Git和Node.js以及Nginx <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">sudo apt install nodejs</span><br><span class="line">sudo apt install npm</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
-
-
 </li>
 </ol>
-<ol start="3">
+<ol>
 <li><p><strong>配置Nginx托管目录</strong></p>
 <p>3.1. 创建<code>/var/www/hexo</code>目录，用于Nginx托管</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /var/www/hexo</span><br><span class="line">chown -R <span class="variable">$USER</span>:<span class="variable">$USER</span> /var/www/hexo</span><br><span class="line">chmod -R 755 /var/www/hexo</span><br></pre></td></tr></table></figure>
-
 <p>3.2. 修改Nginx配置</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/sites-enabled/default</span><br><span class="line"><span class="comment"># 将 root /var/www/html 改为 root /var/www/hexo</span></span><br><span class="line"><span class="comment"># 保存退出</span></span><br></pre></td></tr></table></figure>
-
 <p>3.3. 重启nginx</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>创建私有git仓库</strong></p>
 <p>4.1. 创建用户：git，用于运行git服务</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser git</span><br></pre></td></tr></table></figure>
-
 <p>4.2. 将本机的SSH公钥：<code>.ssh</code>目录下的<code>id_rsa.pub</code>内容添加到<code>/home/git/.ssh/authorized_keys</code>文件中。</p>
 <p>4.3. 在<code>/home/git</code>下创建一个名为<code>hexo.git</code>的裸仓库</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init --bare hexo.git</span><br></pre></td></tr></table></figure>
-
 <p>4.4. 创建Git钩子，在满足条件情况下将静态文件传送到Web服务器目录，即<code>/var/www/hexo</code></p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /home/git/hexo.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
-
 <p>4.5. 添加如下代码</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">git --work-tree=/var/www/hexo --git-dir=/home/git/hexo.git checkout -f</span><br></pre></td></tr></table></figure>
-
 <p>4.6. 保存并退出，将该文件变为可执行文件</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x /home/git/hexo.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
-
 <p>4.7. 将<code>hexo.git</code>目录和网站目录的所有者改为git用户</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R git:git /home/git/hexo.git</span><br><span class="line">sudo chown -R git:git /var/www/hexo</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
 <p>至此，结束服务器端配置。</p>
@@ -2409,7 +2443,6 @@
 </li>
 <li><p>之后就能通过以下命令，完成博客的更新了。</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
 <h3 id="引用："><a href="#引用：" class="headerlink" title="引用："></a>引用：</h3><ul>
@@ -2690,7 +2723,24 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
@@ -2734,28 +2784,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
 
   
 
