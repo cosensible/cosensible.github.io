@@ -1808,7 +1808,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fbff1b;
+  background: #ffa8d9;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2985,5 +2985,5 @@ pre .javascript .function {
   bottom: auto;
 }
 body {
-  background: url("/images/background.png");
+  background: url("https://asgroot.github.io/pictures/background.png");
 }
