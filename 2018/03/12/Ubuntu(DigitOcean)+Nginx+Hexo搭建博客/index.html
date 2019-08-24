@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,17 +55,35 @@
   
 
   
+    
+      
+    
 
-  
-
+    
   
 
   
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -78,7 +96,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="博客,">
+  <meta name="keywords" content="部署,">
 
 
 
@@ -87,7 +105,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2">
 
 
 
@@ -95,14 +113,14 @@
 
 
 <meta name="description" content="前几日，由于想自己搭建一个可以翻墙的服务器，便在DigitOcean上买了一个每个月5美元的最低配置版的装有Ubuntu系统的Droplets。如果是学生的话可以在github领学生包，里面有50美元的代金券，直接在github上搜索github student pack就能找到，代金券可以在DigitOcean上面使用。还有一种方法就是通过我的邀请链接在DigitOcean上面注册成功后就可以获">
-<meta name="keywords" content="博客">
+<meta name="keywords" content="部署">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu(DigitOcean)+Nginx+Hexo搭建博客">
-<meta property="og:url" content="https://github.com/AsGroot/2018/03/12/Ubuntu(DigitOcean)+Nginx+Hexo搭建博客/index.html">
+<meta property="og:url" content="https://asgroot.github.io/2018/03/12/Ubuntu(DigitOcean)+Nginx+Hexo搭建博客/index.html">
 <meta property="og:site_name" content="IamGroot">
 <meta property="og:description" content="前几日，由于想自己搭建一个可以翻墙的服务器，便在DigitOcean上买了一个每个月5美元的最低配置版的装有Ubuntu系统的Droplets。如果是学生的话可以在github领学生包，里面有50美元的代金券，直接在github上搜索github student pack就能找到，代金券可以在DigitOcean上面使用。还有一种方法就是通过我的邀请链接在DigitOcean上面注册成功后就可以获">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-24T07:12:30.362Z">
+<meta property="og:updated_time" content="2019-08-24T09:32:47.547Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu(DigitOcean)+Nginx+Hexo搭建博客">
 <meta name="twitter:description" content="前几日，由于想自己搭建一个可以翻墙的服务器，便在DigitOcean上买了一个每个月5美元的最低配置版的装有Ubuntu系统的Droplets。如果是学生的话可以在github领学生包，里面有50美元的代金券，直接在github上搜索github student pack就能找到，代金券可以在DigitOcean上面使用。还有一种方法就是通过我的邀请链接在DigitOcean上面注册成功后就可以获">
@@ -113,7 +131,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -134,7 +152,7 @@
 
 
 
-  <link rel="canonical" href="https://github.com/AsGroot/2018/03/12/Ubuntu(DigitOcean)+Nginx+Hexo搭建博客/">
+  <link rel="canonical" href="https://asgroot.github.io/2018/03/12/Ubuntu(DigitOcean)+Nginx+Hexo搭建博客/">
 
 
 
@@ -181,7 +199,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">Blog of Chungen</p>
       
   </div>
 
@@ -207,6 +225,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
           </a>
         </li>
       
@@ -263,12 +291,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/AsGroot/2018/03/12/Ubuntu(DigitOcean)+Nginx+Hexo搭建博客/">
+    <link itemprop="mainEntityOfPage" href="https://asgroot.github.io/2018/03/12/Ubuntu(DigitOcean)+Nginx+Hexo搭建博客/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chungen">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/default_avatar.png">
+      <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -302,6 +330,39 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/教程/博客/" itemprop="url" rel="index">
+                    <span itemprop="name">博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -432,7 +493,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/博客/" rel="tag"># 博客</a>
+            <a href="/tags/部署/" rel="tag"># 部署</a>
           
         </div>
       
@@ -517,10 +578,10 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/default_avatar.png" alt="Chungen">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Chungen">
           <p class="site-author-name" itemprop="name">Chungen</p>
            
-              <p class="site-description motion-element" itemprop="description">Blog of Chungen</p>
+              <p class="site-description motion-element" itemprop="description">所谓自由，不是随心所欲，而是自我主宰。</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -535,15 +596,24 @@
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
           
             
             
             <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">4</span>
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
@@ -552,6 +622,30 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/AsGroot" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="lchungen@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
           
         </div>
 
@@ -607,17 +701,6 @@
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
-
 
         
 
@@ -655,6 +738,9 @@
 
 
 
+  
+  
+
 
 
 
@@ -681,6 +767,12 @@
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
 
   
 
@@ -693,6 +785,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
