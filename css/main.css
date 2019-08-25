@@ -1808,7 +1808,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9116d4;
+  background: #be4aff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3010,10 +3010,6 @@ body {
 }
 .fa-custom {
   font-family: "iconfont" !important;
-  font-size: inherit;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 .bokeyuan:before {
   content: "\e623";
