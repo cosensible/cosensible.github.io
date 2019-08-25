@@ -1808,7 +1808,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d577f9;
+  background: #83ff17;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2985,7 +2985,7 @@ pre .javascript .function {
   bottom: auto;
 }
 body {
-  background: url("https://asgroot.github.io/pictures/background.png");
+  background: url("http://chungen.coding.me/background.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
