@@ -112,20 +112,20 @@
 
 
 
-<meta name="description" content="[toc]  1. 说明本机为 PC 机，系统为 Windows 10，模拟器为 GNS3 2.2.3  一个无线网卡（192.168.0.108），用于 PC 连接互联网 一个有线网卡（192.168.0.104），用于关联 Cloud 节点 VMware 虚拟机，每台虚拟机配置一个网卡  2. Cloud 节点配置Cloud 节点与有线网卡关联，以连接互联网 3. 路由器联网 路由器接口 f0">
+<meta name="description" content="1. 说明本机为 PC 机，系统为 Windows 10，模拟器为 GNS3 2.2.3  一个无线网卡（192.168.0.108），用于 PC 连接互联网 一个有线网卡（192.168.0.104），用于关联 Cloud 节点 VMware 虚拟机，每台虚拟机配置一个网卡  2. Cloud 节点配置Cloud 节点与有线网卡关联，以连接互联网 3. 路由器联网 路由器接口 f0/0 连接">
 <meta name="keywords" content="GNS3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VMware 虚拟机通过 GNS3 路由器联网">
 <meta property="og:url" content="http://chungen.coding.me/2020/03/09/虚拟机通过GNS3路由器联网/index.html">
 <meta property="og:site_name" content="IamGroot">
-<meta property="og:description" content="[toc]  1. 说明本机为 PC 机，系统为 Windows 10，模拟器为 GNS3 2.2.3  一个无线网卡（192.168.0.108），用于 PC 连接互联网 一个有线网卡（192.168.0.104），用于关联 Cloud 节点 VMware 虚拟机，每台虚拟机配置一个网卡  2. Cloud 节点配置Cloud 节点与有线网卡关联，以连接互联网 3. 路由器联网 路由器接口 f0">
+<meta property="og:description" content="1. 说明本机为 PC 机，系统为 Windows 10，模拟器为 GNS3 2.2.3  一个无线网卡（192.168.0.108），用于 PC 连接互联网 一个有线网卡（192.168.0.104），用于关联 Cloud 节点 VMware 虚拟机，每台虚拟机配置一个网卡  2. Cloud 节点配置Cloud 节点与有线网卡关联，以连接互联网 3. 路由器联网 路由器接口 f0/0 连接">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200229110559442.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200229110651710.png">
-<meta property="og:updated_time" content="2020-03-19T04:22:54.733Z">
+<meta property="og:updated_time" content="2020-03-19T04:28:09.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VMware 虚拟机通过 GNS3 路由器联网">
-<meta name="twitter:description" content="[toc]  1. 说明本机为 PC 机，系统为 Windows 10，模拟器为 GNS3 2.2.3  一个无线网卡（192.168.0.108），用于 PC 连接互联网 一个有线网卡（192.168.0.104），用于关联 Cloud 节点 VMware 虚拟机，每台虚拟机配置一个网卡  2. Cloud 节点配置Cloud 节点与有线网卡关联，以连接互联网 3. 路由器联网 路由器接口 f0">
+<meta name="twitter:description" content="1. 说明本机为 PC 机，系统为 Windows 10，模拟器为 GNS3 2.2.3  一个无线网卡（192.168.0.108），用于 PC 连接互联网 一个有线网卡（192.168.0.104），用于关联 Cloud 节点 VMware 虚拟机，每台虚拟机配置一个网卡  2. Cloud 节点配置Cloud 节点与有线网卡关联，以连接互联网 3. 路由器联网 路由器接口 f0/0 连接">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200229110559442.png">
 
 
@@ -388,8 +388,7 @@
       
 
       
-        <p>[toc]</p>
-<p><img src="https://img-blog.csdnimg.cn/20200229110559442.png" alt="GNS3通过路由器联网拓扑图"></p>
+        <p><img src="https://img-blog.csdnimg.cn/20200229110559442.png" alt="GNS3通过路由器联网拓扑图"></p>
 <h2 id="1-说明"><a href="#1-说明" class="headerlink" title="1. 说明"></a>1. 说明</h2><p>本机为 PC 机，系统为 Windows 10，模拟器为 GNS3 2.2.3</p>
 <ul>
 <li>一个无线网卡（<code>192.168.0.108</code>），用于 PC 连接互联网</li>
@@ -437,7 +436,7 @@
 </ul>
 <p>两台虚拟机的网关就是路由器接口 <code>f0/1</code>，为其配置 IP 地址：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">R1# conf t</span><br><span class="line">R1(config)# int f0/1</span><br><span class="line">R1(config-if)# ip address 192.168.1.1 255.255.255.0</span><br><span class="line">R1(config-if)# no shutdown</span><br><span class="line">R1(config-if)# end</span><br></pre></td></tr></table></figure>
-<h4 id="4-1-3-测试虚拟机联网"><a href="#4-1-3-测试虚拟机联网" class="headerlink" title="4.1.3 测试虚拟机联网"></a>4.1.3 测试虚拟机联网</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ping 192.168.0.103</span></span><br><span class="line">PING 192.168.0.103 (192.168.0.103) 56(84) bytes of data.</span><br><span class="line">64 bytes from 192.168.0.103: icmp_seq=1 ttl=255 time=2.64 ms</span><br><span class="line">64 bytes from 192.168.0.103: icmp_seq=2 ttl=255 time=3.80 ms</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> ping 192.168.0.108</span></span><br><span class="line">PING 192.168.0.108 (192.168.0.108) 56(84) bytes of data.</span><br><span class="line">^C</span><br><span class="line">--- 192.168.0.108 ping statistics ---</span><br><span class="line">12 packets transmitted, 0 received, 100% packet loss, time 11272ms</span><br></pre></td></tr></table></figure>
+<h4 id="4-1-3-测试虚拟机联网"><a href="#4-1-3-测试虚拟机联网" class="headerlink" title="4.1.3 测试虚拟机联网"></a>4.1.3 测试虚拟机联网</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ping 192.168.0.103</span><br><span class="line">PING 192.168.0.103 (192.168.0.103) 56(84) bytes of data.</span><br><span class="line">64 bytes from 192.168.0.103: icmp_seq=1 ttl=255 time=2.64 ms</span><br><span class="line">64 bytes from 192.168.0.103: icmp_seq=2 ttl=255 time=3.80 ms</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span> ping 192.168.0.108</span><br><span class="line">PING 192.168.0.108 (192.168.0.108) 56(84) bytes of data.</span><br><span class="line">^C</span><br><span class="line">--- 192.168.0.108 ping statistics ---</span><br><span class="line">12 packets transmitted, 0 received, 100% packet loss, time 11272ms</span><br></pre></td></tr></table></figure>
 <p>能 <code>ping</code> 通路由器另一端，但 <code>ping</code> 不通与路由器在同一网段的无线网卡，不能连接互联网，需要配置 NAT。</p>
 <h3 id="4-2-NAT-配置"><a href="#4-2-NAT-配置" class="headerlink" title="4.2 NAT 配置"></a>4.2 NAT 配置</h3><h4 id="4-2-1-内外端口定义"><a href="#4-2-1-内外端口定义" class="headerlink" title="4.2.1 内外端口定义"></a>4.2.1 内外端口定义</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">R1# conf t</span><br><span class="line">R1(config)# int f0/0</span><br><span class="line">R1(config-if)# ip nat outside</span><br><span class="line">R1(config-if)# int f0/1</span><br><span class="line">R1(config-if)# ip nat inside</span><br><span class="line">R1(config-if)# exit</span><br></pre></td></tr></table></figure>
 <h4 id="4-2-2-NAT-配置方式"><a href="#4-2-2-NAT-配置方式" class="headerlink" title="4.2.2 NAT 配置方式"></a>4.2.2 NAT 配置方式</h4><p>可以选择：静态 NAT 配置、端口复用、动态 NAT 配置。</p>
@@ -450,7 +449,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 建立允许内网IP网段进行NAT转换的ACL</span></span><br><span class="line">access-<span class="built_in">list</span> ACL编号 permit 内网IP网段 通配符掩码</span><br><span class="line"><span class="comment">// 建立公网IP地址池</span></span><br><span class="line">ip nat pool 地址池名称 起始公网地址 结束公网地址 netmask 子网掩码</span><br><span class="line"><span class="comment">// 建立动态NAT</span></span><br><span class="line">ip nat inside source <span class="built_in">list</span> ACL编号 pool 公网地址池名称</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">R1(config)#access-list 1 permit 192.168.1.0 0.0.0.255</span><br><span class="line">R1(config)#ip nat pool gen 192.168.0.120 192.168.0.130 netmask 255.255.255.0</span><br><span class="line">R1(config)#ip nat inside source list 1 pool gen</span><br></pre></td></tr></table></figure>
 <p>在虚拟机上测试互联网连接，成功</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ping www.baidu.com</span></span><br><span class="line">PING www.wshifen.com (104.193.88.123) 56(84) bytes of data.</span><br><span class="line">64 bytes from 104.193.88.123 (104.193.88.123): icmp_seq=1 ttl=50 time=214 ms</span><br><span class="line">64 bytes from 104.193.88.123 (104.193.88.123): icmp_seq=3 ttl=50 time=208 ms</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ping www.baidu.com</span><br><span class="line">PING www.wshifen.com (104.193.88.123) 56(84) bytes of data.</span><br><span class="line">64 bytes from 104.193.88.123 (104.193.88.123): icmp_seq=1 ttl=50 time=214 ms</span><br><span class="line">64 bytes from 104.193.88.123 (104.193.88.123): icmp_seq=3 ttl=50 time=208 ms</span><br></pre></td></tr></table></figure>
 <h2 id="5-保存配置"><a href="#5-保存配置" class="headerlink" title="5. 保存配置"></a>5. 保存配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R1# write memory</span><br></pre></td></tr></table></figure>
 
       
