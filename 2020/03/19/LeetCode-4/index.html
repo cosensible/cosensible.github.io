@@ -96,7 +96,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="VIM,">
+  <meta name="keywords" content="Leetcode,Hard,">
 
 
 
@@ -112,18 +112,18 @@
 
 
 
-<meta name="description" content="条件 Vim版本大于等于7.4，并且支持python2或python3。 编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:  1sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。   步骤 下">
-<meta name="keywords" content="VIM">
+<meta name="description" content="题目 There are two sorted arrays nums1 and nums2 of size m and n respectively.Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).You may assume nums1 and nu">
+<meta name="keywords" content="Leetcode,Hard">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VIM配置YouCompleteMe">
-<meta property="og:url" content="http://chungen.coding.me/2019/08/15/VIM配置YouCompleteMe/index.html">
+<meta property="og:title" content="Leetcode-4 Median of Two Sorted Arrays">
+<meta property="og:url" content="http://chungen.coding.me/2020/03/19/LeetCode-4/index.html">
 <meta property="og:site_name" content="IamGroot">
-<meta property="og:description" content="条件 Vim版本大于等于7.4，并且支持python2或python3。 编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:  1sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。   步骤 下">
+<meta property="og:description" content="题目 There are two sorted arrays nums1 and nums2 of size m and n respectively.Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).You may assume nums1 and nu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-24T10:37:09.468Z">
+<meta property="og:updated_time" content="2020-03-19T03:04:13.664Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VIM配置YouCompleteMe">
-<meta name="twitter:description" content="条件 Vim版本大于等于7.4，并且支持python2或python3。 编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:  1sudo apt install build-essential cmake python3-dev  clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。   步骤 下">
+<meta name="twitter:title" content="Leetcode-4 Median of Two Sorted Arrays">
+<meta name="twitter:description" content="题目 There are two sorted arrays nums1 and nums2 of size m and n respectively.Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).You may assume nums1 and nu">
 
 
 
@@ -152,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="http://chungen.coding.me/2019/08/15/VIM配置YouCompleteMe/">
+  <link rel="canonical" href="http://chungen.coding.me/2020/03/19/LeetCode-4/">
 
 
 
 
 
-  <title>VIM配置YouCompleteMe | IamGroot</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Leetcode-4 Median of Two Sorted Arrays | IamGroot</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -291,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chungen.coding.me/2019/08/15/VIM配置YouCompleteMe/">
+    <link itemprop="mainEntityOfPage" href="http://chungen.coding.me/2020/03/19/LeetCode-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chungen">
@@ -308,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">VIM配置YouCompleteMe</h1>
+          <h1 class="post-title" itemprop="name headline">Leetcode-4 Median of Two Sorted Arrays</h1>
         
 
         <div class="post-meta">
@@ -320,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T00:00:00+08:00">
-                2019-08-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-19T00:00:00+08:00">
+                2020-03-19
               </time>
             
 
@@ -343,8 +343,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/教程/" itemprop="url" rel="index">
-                    <span itemprop="name">教程</span>
+                  <a href="/categories/Leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">Leetcode</span>
                   </a>
                 </span>
 
@@ -354,8 +354,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/教程/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/Leetcode/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -396,31 +396,17 @@
       
 
       
-        <h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><ol>
-<li>Vim版本大于等于7.4，并且支持python2或python3。</li>
-<li><p>编译YouCompleteMe需要cmake，且依赖python文件，可用以下命令安装:</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install build-essential cmake python3-dev</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>clang是一个面向C族语言的轻量级编译器，YouCompleteMe插件依赖clang实现对C族语言的语义补全。</p>
-</li>
-</ol>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
-<li><p>下载YouCompleteMe源码：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Valloric/YouCompleteMe.git ~/.vim/plugged/</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下载源码后，在源码目录运行：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编译YouCompleteMe。YouCompleteMe需要手工编译出库文件ycm_core.so(以及依赖的libclang.so)才能使用。</p>
-<ul>
-<li>在YouCompleteMe目录下执行<code>./install.py --clang-completer</code>即可编译出具有C族语言语义补全功能的YouCompleteMe插件。</li>
-<li>其他选项还有：<code>c#(--cs-)</code>、<code>go(--go-)</code>、<code>JS(--ts-)</code>、<code>Java(--java-)</code>、<code>Rust(--rust-)</code>。</li>
-<li>以上选项都必须满足相应依赖；<code>--all</code>则会编译以上所有满足依赖的选项。</li>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>There are two sorted arrays <strong>nums1</strong> and <strong>nums2</strong> of size m and n respectively.<br>Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).<br>You may assume <strong>nums1</strong> and <strong>nums2</strong> cannot be both empty.</p>
+</blockquote>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nums1 = [1, 3]</span><br><span class="line">nums2 = [2]</span><br><span class="line"></span><br><span class="line">The median is 2.0</span><br></pre></td></tr></table></figure>
+<h3 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2"></a>Example 2</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nums1 = [1, 2]</span><br><span class="line">nums2 = [3, 4]</span><br><span class="line"></span><br><span class="line">The median is (2 + 3)/2 = 2.5</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>将两个数组分别分割为左右两部分，二者左边元素数量之和应该为总数量的一半。若左边元素都小于等于右边元素，即nums1中左边最大元素小于等于nums2中右边最小元素且nums2中左边最大元素小于等于nums1中右边最小元素，则中位数能够由这四个元素产生。若不满足，需要将nums1中的分割点向左或向右移动。</p>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
+<li>时间复杂度：$O(min(m,n))$，最坏情况下需要移动半个数组</li>
+<li>空间复杂度：$O(1)$</li>
 </ul>
-</li>
-<li>必须要在<code>.vimrc</code>的插件列表中引用该插件。</li>
-<li><code>.vimrc</code>文件中的ycm配置项的python解释器应该与编译YouCompleteMe时所用的python版本一致。</li>
-</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution_4</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">findMedianSortedArrays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> m = nums1.size(), n = nums2.size();</span><br><span class="line">		<span class="keyword">if</span> (m &gt; n) &#123; <span class="comment">//移动短数组,降低移动次数</span></span><br><span class="line">			swap(nums1, nums2);</span><br><span class="line">			swap(m, n);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> l = m + n;						<span class="comment">//总共有多少个元素</span></span><br><span class="line">		<span class="keyword">int</span> lmxi = m / <span class="number">2</span> - <span class="number">1</span>, rmxi = m / <span class="number">2</span>;	<span class="comment">//nums1中 左边最大/右边最小 元素索引</span></span><br><span class="line">		<span class="keyword">int</span> lmyi, rmyi;						<span class="comment">//nums2中 左边最大/右边最小 元素索引</span></span><br><span class="line">		<span class="keyword">int</span> lmx, lmy, rmx, rmy;				<span class="comment">//nums1和nums2中 左边最大/右边最小 元素</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//当nums1全部元素位于同一边,一定能得到中位数,但需要更新nums2的分割点</span></span><br><span class="line">		<span class="keyword">while</span> (lmxi &gt;= <span class="number">-1</span> &amp;&amp; rmxi &lt;= m) &#123;</span><br><span class="line">			<span class="comment">//nums1和nums2中的左边元素数量之和应该为总数量的一半: l/2</span></span><br><span class="line">			<span class="comment">//nums1中左边元素个数为rmxi,nums2中左边元素个数应该为l/2-rmxi,最后元素的索引等于数量减一</span></span><br><span class="line">			lmyi = l / <span class="number">2</span> - rmxi - <span class="number">1</span>;</span><br><span class="line">			rmyi = lmyi + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">			lmx = lmxi &lt; <span class="number">0</span> ? INT_MIN : nums1[lmxi];</span><br><span class="line">			rmx = rmxi &gt;= m ? INT_MAX : nums1[rmxi];</span><br><span class="line">			lmy = lmyi &lt; <span class="number">0</span> ? INT_MIN : nums2[lmyi];</span><br><span class="line">			rmy = rmyi &gt;= n ? INT_MAX : nums2[rmyi];</span><br><span class="line"></span><br><span class="line">			<span class="comment">//nums1和nums2中的所有左边元素都不大于右边元素,且正好分成两半,中位数由分界处的四个元素产生</span></span><br><span class="line">			<span class="keyword">if</span> (lmx &lt;= rmy &amp;&amp; lmy &lt;= rmx) &#123;</span><br><span class="line">				<span class="keyword">if</span> (l % <span class="number">2</span>)<span class="keyword">return</span> min(rmx, rmy);</span><br><span class="line">				<span class="keyword">return</span> (max(lmx, lmy) + min(rmx, rmy)) / <span class="number">2.0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (lmx &gt; rmy) &#123;</span><br><span class="line">				lmxi--; <span class="comment">//nums1中左边最大元素大于nums2中右边最小元素,应该使其降低,即向左移动</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (lmy &gt; rmx) &#123;</span><br><span class="line">				lmxi++; <span class="comment">//nums1中右边最小元素小于nums2中左边最大元素,应该使其增加,即向右移动</span></span><br><span class="line">			&#125;</span><br><span class="line">			rmxi = lmxi + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_4</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a = &#123; <span class="number">1</span> &#125;, b = &#123; <span class="number">2</span>,<span class="number">3</span> &#125;;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; (Solution_4().findMedianSortedArrays(a, b) == <span class="number">2</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -438,7 +424,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/VIM/" rel="tag"># VIM</a>
+            <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
+          
+            <a href="/tags/Hard/" rel="tag"># Hard</a>
           
         </div>
       
@@ -451,8 +439,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/25/Redis设计与实现/" rel="next" title="Redis设计与实现">
-                <i class="fa fa-chevron-left"></i> Redis设计与实现
+              <a href="/2020/03/09/虚拟机通过GNS3路由器联网/" rel="next" title="VMware 虚拟机通过 GNS3 路由器联网">
+                <i class="fa fa-chevron-left"></i> VMware 虚拟机通过 GNS3 路由器联网
               </a>
             
           </div>
@@ -460,10 +448,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/09/虚拟机通过GNS3路由器联网/" rel="prev" title="VMware 虚拟机通过 GNS3 路由器联网">
-                VMware 虚拟机通过 GNS3 路由器联网 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -641,7 +625,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#条件"><span class="nav-text">条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤"><span class="nav-text">步骤</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-text">Example 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-2"><span class="nav-text">Example 2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度分析"><span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>
