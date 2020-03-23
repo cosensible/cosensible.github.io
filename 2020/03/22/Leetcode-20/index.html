@@ -96,7 +96,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Medium,">
+  <meta name="keywords" content="Easy,">
 
 
 
@@ -112,18 +112,18 @@
 
 
 
-<meta name="description" content="Container With Most Water Given n non-negative integers a1, a2, …, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i,">
-<meta name="keywords" content="Medium">
+<meta name="description" content="Valid Parentheses Given a string containing just the characters &amp;#39;(&amp;#39;, &amp;#39;)&amp;#39;, &amp;#39;{&amp;#39;, &amp;#39;}&amp;#39;, &amp;#39;[&amp;#39; and &amp;#39;]&amp;#39;, determine if the input string is valid. An input string">
+<meta name="keywords" content="Easy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode-11 Container With Most Water">
-<meta property="og:url" content="https://cosensible.github.io/2020/03/19/Leetcode-11/index.html">
+<meta property="og:title" content="Leetcode-20 Valid Parentheses">
+<meta property="og:url" content="https://cosensible.github.io/2020/03/22/Leetcode-20/index.html">
 <meta property="og:site_name" content="IamGroot">
-<meta property="og:description" content="Container With Most Water Given n non-negative integers a1, a2, …, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i,">
+<meta property="og:description" content="Valid Parentheses Given a string containing just the characters &amp;#39;(&amp;#39;, &amp;#39;)&amp;#39;, &amp;#39;{&amp;#39;, &amp;#39;}&amp;#39;, &amp;#39;[&amp;#39; and &amp;#39;]&amp;#39;, determine if the input string is valid. An input string">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-21T04:54:27.130Z">
+<meta property="og:updated_time" content="2020-03-23T10:08:10.506Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode-11 Container With Most Water">
-<meta name="twitter:description" content="Container With Most Water Given n non-negative integers a1, a2, …, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i,">
+<meta name="twitter:title" content="Leetcode-20 Valid Parentheses">
+<meta name="twitter:description" content="Valid Parentheses Given a string containing just the characters &amp;#39;(&amp;#39;, &amp;#39;)&amp;#39;, &amp;#39;{&amp;#39;, &amp;#39;}&amp;#39;, &amp;#39;[&amp;#39; and &amp;#39;]&amp;#39;, determine if the input string is valid. An input string">
 
 
 
@@ -152,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="https://cosensible.github.io/2020/03/19/Leetcode-11/">
+  <link rel="canonical" href="https://cosensible.github.io/2020/03/22/Leetcode-20/">
 
 
 
 
 
-  <title>Leetcode-11 Container With Most Water | IamGroot</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Leetcode-20 Valid Parentheses | IamGroot</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -291,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cosensible.github.io/2020/03/19/Leetcode-11/">
+    <link itemprop="mainEntityOfPage" href="https://cosensible.github.io/2020/03/22/Leetcode-20/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chungen">
@@ -308,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Leetcode-11 Container With Most Water</h1>
+          <h1 class="post-title" itemprop="name headline">Leetcode-20 Valid Parentheses</h1>
         
 
         <div class="post-meta">
@@ -320,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-19T00:00:00+08:00">
-                2020-03-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-22T00:00:00+08:00">
+                2020-03-22
               </time>
             
 
@@ -385,18 +385,24 @@
       
 
       
-        <h2 id="Container-With-Most-Water"><a href="#Container-With-Most-Water" class="headerlink" title="Container With Most Water"></a><a href="https://leetcode.com/problems/container-with-most-water/" target="_blank" rel="noopener">Container With Most Water</a></h2><blockquote>
-<p>Given <em>n</em> non-negative integers <em>a1</em>, <em>a2</em>, …, <em>an</em> , where each represents a point at coordinate (<em>i</em>, <em>ai</em>). <em>n</em> vertical lines are drawn such that the two endpoints of line <em>i</em> is at (<em>i</em>, <em>ai</em>) and (<em>i</em>, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
-<p><strong>Note:</strong> You may not slant the container and <em>n</em> is at least 2.</p>
+        <h2 id="Valid-Parentheses"><a href="#Valid-Parentheses" class="headerlink" title="Valid Parentheses"></a><a href="https://leetcode.com/problems/valid-parentheses/" target="_blank" rel="noopener">Valid Parentheses</a></h2><blockquote>
+<p>Given a string containing just the characters <code>&#39;(&#39;</code>, <code>&#39;)&#39;</code>, <code>&#39;{&#39;</code>, <code>&#39;}&#39;</code>, <code>&#39;[&#39;</code> and <code>&#39;]&#39;</code>, determine if the input string is valid.</p>
+<p>An input string is valid if:</p>
+<ol>
+<li>Open brackets must be closed by the same type of brackets.</li>
+<li>Open brackets must be closed in the correct order.</li>
+</ol>
+<p>Note that an empty string is also considered valid.</p>
 </blockquote>
-<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,8,6,2,5,4,8,3,7]</span><br><span class="line">Output: 49</span><br></pre></td></tr></table></figure>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>初始时刻让两壁分别位于两端，然后不断缩小两壁距离。为使容量有可能增大，须将矮的一端换成更高的壁。</p>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "()"</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+<h3 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2"></a>Example 2</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "&#123;[]&#125;"</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+<h3 id="Example-3"><a href="#Example-3" class="headerlink" title="Example 3"></a>Example 3</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "([)]"</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>很自然想到用栈。从前往后遍历字符串，若当前为左括号，入栈；若当前为右括号且无法消除，返回 <code>false</code>。无法消除的情况包括：1、栈为空；2、栈顶左括号与该右括号不匹配。最后，若栈不为空，说明还有多余的左括号，返回 <code>false</code>。</p>
 <h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
-<li>时间复杂度：$O(n)$</li>
-<li>空间复杂度：$O(1)$</li>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(n)$，最坏情况下，栈中包含所有字符，如：<code>((((((((((((</code>。</li>
 </ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, j = height.size() - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> area = (j - i)*min(height[i], height[j]);</span><br><span class="line">	<span class="keyword">int</span> res = area;</span><br><span class="line">	<span class="keyword">while</span> (i != j) &#123;</span><br><span class="line">		<span class="keyword">if</span> (height[i] &lt; height[j])++i;</span><br><span class="line">		<span class="keyword">else</span> --j;</span><br><span class="line">		area = (j - i)*min(height[i], height[j]);</span><br><span class="line">		<span class="keyword">if</span> (area &gt; res)res = area;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">isValid</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">		<span class="built_in">stack</span>&lt;<span class="keyword">char</span>&gt; cs;</span><br><span class="line">		<span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">char</span>&gt; mp = &#123; &#123;<span class="string">')'</span>,<span class="string">'('</span>&#125;,&#123;<span class="string">']'</span>,<span class="string">'['</span>&#125;,&#123;<span class="string">'&#125;'</span>,<span class="string">'&#123;'</span>&#125; &#125;;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); ++i) &#123;</span><br><span class="line">			<span class="keyword">if</span> (s[i] == <span class="string">'('</span> || s[i] == <span class="string">'['</span> || s[i] == <span class="string">'&#123;'</span>) &#123;</span><br><span class="line">				cs.push(s[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (cs.empty()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">				<span class="keyword">if</span> (mp[s[i]] != cs.top()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">				cs.pop();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> cs.empty();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -413,7 +419,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Medium/" rel="tag"># Medium</a>
+            <a href="/tags/Easy/" rel="tag"># Easy</a>
           
         </div>
       
@@ -426,8 +432,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/18/Leetcode-4/" rel="next" title="Leetcode-4 Median of Two Sorted Arrays">
-                <i class="fa fa-chevron-left"></i> Leetcode-4 Median of Two Sorted Arrays
+              <a href="/2020/03/21/Leetcode-17/" rel="next" title="Leetcode-17 Letter Combinations of a Phone Number">
+                <i class="fa fa-chevron-left"></i> Leetcode-17 Letter Combinations of a Phone Number
               </a>
             
           </div>
@@ -436,8 +442,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/03/20/Leetcode-5/" rel="prev" title="Leetcode-5 Longest Palindromic Substring">
-                Leetcode-5 Longest Palindromic Substring <i class="fa fa-chevron-right"></i>
+              <a href="/2020/03/23/Leetcode-19/" rel="prev" title="Leetcode-19 Remove Nth Node From End of List">
+                Leetcode-19 Remove Nth Node From End of List <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -616,7 +622,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Container-With-Most-Water"><span class="nav-text">Container With Most Water</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-text">Example 1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度分析"><span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Valid-Parentheses"><span class="nav-text">Valid Parentheses</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-text">Example 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-2"><span class="nav-text">Example 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-3"><span class="nav-text">Example 3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度分析"><span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>
