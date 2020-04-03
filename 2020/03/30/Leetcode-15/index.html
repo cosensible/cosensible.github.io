@@ -112,18 +112,18 @@
 
 
 
-<meta name="description" content="Letter Combinations of a Phone Number Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. A mapping of digit to letters (just">
+<meta name="description" content="3Sum Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not c">
 <meta name="keywords" content="Medium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode-17 Letter Combinations of a Phone Number">
-<meta property="og:url" content="https://cosensible.github.io/2020/03/21/Leetcode-17/index.html">
+<meta property="og:title" content="Leetcode-15 3Sum">
+<meta property="og:url" content="https://cosensible.github.io/2020/03/30/Leetcode-15/index.html">
 <meta property="og:site_name" content="IamGroot">
-<meta property="og:description" content="Letter Combinations of a Phone Number Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. A mapping of digit to letters (just">
+<meta property="og:description" content="3Sum Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-21T04:57:40.255Z">
+<meta property="og:updated_time" content="2020-04-02T17:32:51.767Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode-17 Letter Combinations of a Phone Number">
-<meta name="twitter:description" content="Letter Combinations of a Phone Number Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. A mapping of digit to letters (just">
+<meta name="twitter:title" content="Leetcode-15 3Sum">
+<meta name="twitter:description" content="3Sum Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not c">
 
 
 
@@ -152,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="https://cosensible.github.io/2020/03/21/Leetcode-17/">
+  <link rel="canonical" href="https://cosensible.github.io/2020/03/30/Leetcode-15/">
 
 
 
 
 
-  <title>Leetcode-17 Letter Combinations of a Phone Number | IamGroot</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Leetcode-15 3Sum | IamGroot</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -291,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cosensible.github.io/2020/03/21/Leetcode-17/">
+    <link itemprop="mainEntityOfPage" href="https://cosensible.github.io/2020/03/30/Leetcode-15/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chungen">
@@ -308,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Leetcode-17 Letter Combinations of a Phone Number</h1>
+          <h1 class="post-title" itemprop="name headline">Leetcode-15 3Sum</h1>
         
 
         <div class="post-meta">
@@ -320,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-21T00:00:00+08:00">
-                2020-03-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-30T00:00:00+08:00">
+                2020-03-30
               </time>
             
 
@@ -385,18 +385,18 @@
       
 
       
-        <h2 id="Letter-Combinations-of-a-Phone-Number"><a href="#Letter-Combinations-of-a-Phone-Number" class="headerlink" title="Letter Combinations of a Phone Number"></a><a href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/" target="_blank" rel="noopener">Letter Combinations of a Phone Number</a></h2><blockquote>
-<p>Given a string containing digits from <code>2-9</code> inclusive, return all possible letter combinations that the number could represent.</p>
-<p>A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.</p>
-<p><strong>Note:</strong> Although the above answer is in lexicographical order, your answer could be in any order you want.</p>
+        <h2 id="3Sum"><a href="#3Sum" class="headerlink" title="3Sum"></a><a href="https://leetcode.com/problems/3sum/" target="_blank" rel="noopener">3Sum</a></h2><blockquote>
+<p>Given an array <code>nums</code> of <em>n</em> integers, are there elements <em>a</em>, <em>b</em>, <em>c</em> in <code>nums</code> such that <em>a</em> + <em>b</em> + <em>c</em> = 0? Find all unique triplets in the array which gives the sum of zero.</p>
+<p><strong>Note:</strong></p>
+<p>The solution set must not contain duplicate triplets.</p>
 </blockquote>
-<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: "23"</span><br><span class="line">Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].</span><br></pre></td></tr></table></figure>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>每个数字对应一系列字母，从前往后遍历数字，将数字替换为字母。因为每个数字替换有多种选择，很容易想到回溯法。每当树的一层被完全展开（即完成所有替换选择），便回到上一层做下一个选择并展开。</p>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Given array nums = [-1, 0, 1, 2, -1, -4],</span><br><span class="line"></span><br><span class="line">A solution set is:</span><br><span class="line">[</span><br><span class="line">  [-1, 0, 1],</span><br><span class="line">  [-1, -1, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>三指针法。当数组元素均为正数或均为负数时，不可能有 <code>a+b+c==0</code>。因此可将数组排序，以判断数组元素是否均为正数或负数，并方便采用双指针解决 <code>2Sum: a+b=-c</code> 的问题。在外层循环选定 <code>target</code>，在内层循环使双指针靠近。若其和为 <code>target</code>，将该合法“三数”加入结果集，若其和小于 <code>target</code>，递增左指针，否则递减右指针。为避免重复，在外层循环跳过被考虑过的 <code>target</code>，在内层循环跳过相同元素。</p>
 <h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
-<li>时间复杂度：$O(m^n)$，<code>m</code> 为每个数字对应的最大字母数量。</li>
-<li>空间复杂度：$O(n)$，除去返回结果，只用了一个额外的字符串。</li>
+<li>时间复杂度：$O(n^2)$。</li>
+<li>空间复杂度：$O(1)$。</li>
 </ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; letterCombinations(<span class="built_in">string</span> digits) &#123;</span><br><span class="line">		<span class="keyword">if</span> (digits.empty()) <span class="keyword">return</span> res;</span><br><span class="line">		<span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(digits)</span></span>;</span><br><span class="line">		backtrack(digits, <span class="number">0</span>, s);</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; mp = &#123; <span class="string">""</span>,<span class="string">""</span>,<span class="string">"abc"</span>,<span class="string">"def"</span>,<span class="string">"ghi"</span>,<span class="string">"jkl"</span>,<span class="string">"mno"</span>,<span class="string">"pqrs"</span>,<span class="string">"tuv"</span>,<span class="string">"wxyz"</span> &#125;;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; res;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;digits, <span class="keyword">int</span> level, <span class="built_in">string</span> &amp;s)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (level == digits.size()) &#123;</span><br><span class="line">			res.push_back(s);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> id = digits[level] - <span class="number">48</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">char</span> c : mp[id]) &#123;</span><br><span class="line">			s[level] = c;</span><br><span class="line">			backtrack(digits, level + <span class="number">1</span>, s);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; threeSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">		sort(nums.begin(), nums.end());</span><br><span class="line">		<span class="keyword">if</span> (nums.empty() || nums.front() &gt; <span class="number">0</span> || nums.back() &lt; <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span> res;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">			<span class="keyword">if</span> (nums[i] &gt; <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">			<span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">int</span> target = -nums[i];</span><br><span class="line">			<span class="keyword">int</span> j = i + <span class="number">1</span>, k = nums.size() - <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span> (j &lt; k) &#123;</span><br><span class="line">				<span class="keyword">if</span> (nums[j] + nums[k] == target) &#123;</span><br><span class="line">					res.push_back(&#123; -target,nums[j],nums[k] &#125;);</span><br><span class="line">					<span class="keyword">while</span> (j &lt; k&amp;&amp;nums[j + <span class="number">1</span>] == nums[j])++j;</span><br><span class="line">					<span class="keyword">while</span> (j &lt; k&amp;&amp;nums[k - <span class="number">1</span>] == nums[k])--k;</span><br><span class="line">					++j;</span><br><span class="line">					--k;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (nums[j] + nums[k] &lt; target)</span><br><span class="line">					++j;</span><br><span class="line">				<span class="keyword">else</span> --k;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -426,8 +426,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/20/Leetcode-5/" rel="next" title="Leetcode-5 Longest Palindromic Substring">
-                <i class="fa fa-chevron-left"></i> Leetcode-5 Longest Palindromic Substring
+              <a href="/2020/03/29/Leetcode-33/" rel="next" title="Leetcode-33 Search in Rotated Sorted Array">
+                <i class="fa fa-chevron-left"></i> Leetcode-33 Search in Rotated Sorted Array
               </a>
             
           </div>
@@ -436,8 +436,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/03/22/Leetcode-20/" rel="prev" title="Leetcode-20 Valid Parentheses">
-                Leetcode-20 Valid Parentheses <i class="fa fa-chevron-right"></i>
+              <a href="/2020/03/31/Leetcode-39/" rel="prev" title="Leetcode-39 Combination Sum">
+                Leetcode-39 Combination Sum <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -616,7 +616,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Letter-Combinations-of-a-Phone-Number"><span class="nav-text">Letter Combinations of a Phone Number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-text">Example 1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度分析"><span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3Sum"><span class="nav-text">3Sum</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-text">Example 1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度分析"><span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>
