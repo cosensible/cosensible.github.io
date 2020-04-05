@@ -120,7 +120,7 @@
 <meta property="og:site_name" content="IamGroot">
 <meta property="og:description" content="Unique Paths A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below). The robot can only move either down or right at any point in time. The robot is trying to">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-05T14:47:10.647Z">
+<meta property="og:updated_time" content="2020-04-05T14:55:17.724Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode-62 Unique Paths">
 <meta name="twitter:description" content="Unique Paths A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below). The robot can only move either down or right at any point in time. The robot is trying to">
@@ -396,7 +396,7 @@
 </ul>
 </blockquote>
 <h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: m = 3, n = 2</span><br><span class="line">Output: 3</span><br><span class="line">Explanation:</span><br><span class="line">From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:</span><br><span class="line">1. Right -&gt; Right -&gt; Down</span><br><span class="line">2. Right -&gt; Down -&gt; Right</span><br><span class="line">3. Down -&gt; Right -&gt; Right</span><br></pre></td></tr></table></figure>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>总共有 $C_{m+n-2}^{n-1}$ 条路经，但是直接计算将会越界。采用动态规划：要到达右下角 <code>[m,n]</code>，必须先到达 <code>[m][n-1]</code> 或 <code>[m-1][n]</code>，因此机器人到达每个位置的路径数等于到达其左边和上方位置的路径数之和。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>总共有 $C_{m+n-2}^{n-1}$ 条路经，但是直接计算将会越界。采用动态规划：要到达右下角 <code>[m,n]</code>，必须先到达 <code>[m,n-1]</code> 或 <code>[m-1,n]</code>，因此机器人到达每个位置的路径数等于到达其左边和上方位置的路径数之和。</p>
 <h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
 <li>时间复杂度：$O(mn)$。</li>
 <li>空间复杂度：$O(mn)$。</li>
