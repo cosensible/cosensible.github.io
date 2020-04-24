@@ -112,18 +112,18 @@
 
 
 
-<meta name="description" content="Word Search Given a 2D board and a word, find if the word exists in the grid. The word can be constructed from letters of sequentially adjacent cell, where “adjacent” cells are those horizontally or v">
+<meta name="description" content="Daily Temperatures Given a list of daily temperatures T, return a list such that, for each day in the input, tells you how many days you would have to wait until a warmer temperature. If there is no f">
 <meta name="keywords" content="Medium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode-79 Word Search">
-<meta property="og:url" content="https://cosensible.github.io/2020/04/09/Leetcode-79/index.html">
+<meta property="og:title" content="Leetcode-739 Daily Temperatures">
+<meta property="og:url" content="https://cosensible.github.io/2020/04/16/Leetcode-739/index.html">
 <meta property="og:site_name" content="IamGroot">
-<meta property="og:description" content="Word Search Given a 2D board and a word, find if the word exists in the grid. The word can be constructed from letters of sequentially adjacent cell, where “adjacent” cells are those horizontally or v">
+<meta property="og:description" content="Daily Temperatures Given a list of daily temperatures T, return a list such that, for each day in the input, tells you how many days you would have to wait until a warmer temperature. If there is no f">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-11T03:19:34.165Z">
+<meta property="og:updated_time" content="2020-04-24T15:46:19.338Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode-79 Word Search">
-<meta name="twitter:description" content="Word Search Given a 2D board and a word, find if the word exists in the grid. The word can be constructed from letters of sequentially adjacent cell, where “adjacent” cells are those horizontally or v">
+<meta name="twitter:title" content="Leetcode-739 Daily Temperatures">
+<meta name="twitter:description" content="Daily Temperatures Given a list of daily temperatures T, return a list such that, for each day in the input, tells you how many days you would have to wait until a warmer temperature. If there is no f">
 
 
 
@@ -152,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="https://cosensible.github.io/2020/04/09/Leetcode-79/">
+  <link rel="canonical" href="https://cosensible.github.io/2020/04/16/Leetcode-739/">
 
 
 
 
 
-  <title>Leetcode-79 Word Search | IamGroot</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Leetcode-739 Daily Temperatures | IamGroot</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -291,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cosensible.github.io/2020/04/09/Leetcode-79/">
+    <link itemprop="mainEntityOfPage" href="https://cosensible.github.io/2020/04/16/Leetcode-739/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chungen">
@@ -308,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Leetcode-79 Word Search</h1>
+          <h1 class="post-title" itemprop="name headline">Leetcode-739 Daily Temperatures</h1>
         
 
         <div class="post-meta">
@@ -320,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-09T00:00:00+08:00">
-                2020-04-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-16T00:00:00+08:00">
+                2020-04-16
               </time>
             
 
@@ -385,24 +385,18 @@
       
 
       
-        <h2 id="Word-Search"><a href="#Word-Search" class="headerlink" title="Word Search"></a><a href="https://leetcode.com/problems/word-search/" target="_blank" rel="noopener">Word Search</a></h2><blockquote>
-<p>Given a 2D board and a word, find if the word exists in the grid.</p>
-<p>The word can be constructed from letters of sequentially adjacent cell, where “adjacent” cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.</p>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>board</code> and <code>word</code> consists only of lowercase and uppercase English letters.</li>
-<li><code>1 &lt;= board.length &lt;= 200</code></li>
-<li><code>1 &lt;= board[i].length &lt;= 200</code></li>
-<li><code>1 &lt;= word.length &lt;= 10^3</code></li>
-</ul>
+        <h2 id="Daily-Temperatures"><a href="#Daily-Temperatures" class="headerlink" title="Daily Temperatures"></a><a href="https://leetcode.com/problems/daily-temperatures/" target="_blank" rel="noopener">Daily Temperatures</a></h2><blockquote>
+<p>Given a list of daily temperatures <code>T</code>, return a list such that, for each day in the input, tells you how many days you would have to wait until a warmer temperature. If there is no future day for which this is possible, put <code>0</code> instead.</p>
+<p>For example, given the list of temperatures <code>T = [73, 74, 75, 71, 69, 72, 76, 73]</code>, your output should be <code>[1, 1, 4, 2, 1, 1, 0, 0]</code>.</p>
+<p><strong>Note:</strong> The length of <code>temperatures</code> will be in the range <code>[1, 30000]</code>. Each temperature will be an integer in the range <code>[30, 100]</code>.</p>
 </blockquote>
-<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">board =</span><br><span class="line">[</span><br><span class="line">  ['A','B','C','E'],</span><br><span class="line">  ['S','F','C','S'],</span><br><span class="line">  ['A','D','E','E']</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">Given word = "ABCCED", return true.</span><br><span class="line">Given word = "SEE", return true.</span><br><span class="line">Given word = "ABCB", return false.</span><br></pre></td></tr></table></figure>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>回溯法。尝试从每个位置开始，合成单词。每个位置有上下左右四个选择，若当前选择无法合成单词，做下一个选择。若当前选择合成单词成功，直接返回。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>法一：从后往前遍历 <code>T</code>，对于当前温度 <code>t</code> 及其索引 <code>i</code>，取温度 <code>t+1~100</code> 中的最小索引 <code>j</code>，在温度 <code>t</code> 的那一天 <code>i</code> 需等待 <code>j-i</code> 天。最后更新 <code>t</code> 的索引为 <code>i</code>。</p>
+<p>法二：要找比当天温度高的下一天，考虑用递减栈，栈内温度递减。以 <code>i</code> 遍历数组，若栈不为空且当前温度大于栈顶温度 <code>t</code>，必须出栈以保持递减性，此时在温度 <code>t</code> 的那一天 <code>j</code> 需等待 <code>i-j</code> 天。否则，当前温度的索引入栈，等待温度高的那一天到来。 </p>
 <h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
-<li>时间复杂度：$O(nm^4)$，总共有 <code>n</code> 个位置，单词的长度为 <code>m</code>。每个字母最多要经过四次选择。</li>
-<li>空间复杂度：$O(m)$，用于存储单词合成的中间结果。</li>
+<li>时间复杂度：法一 $O(wn)$，<code>w</code> 为温度种数；法二 $O(n)$，每个元素最多进栈出栈各一次。</li>
+<li>空间复杂度：法一 $O(n+w)$，保存结果和温度索引；法二栈中最多需要保存 <code>n</code> 个元素。</li>
 </ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dirs = &#123; &#123;<span class="number">-1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,<span class="number">-1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>&#125; &#125;;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">exist</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; board, <span class="built_in">string</span> word)</span> </span>&#123;</span><br><span class="line">		<span class="function"><span class="built_in">string</span> <span class="title">rword</span><span class="params">(word.rbegin(), word.rend() - <span class="number">1</span>)</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.size(); ++i) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].size(); ++j) &#123;</span><br><span class="line">				<span class="keyword">if</span> (board[i][j] == word[<span class="number">0</span>]) &#123;</span><br><span class="line">					board[i][j] = <span class="string">'.'</span>;</span><br><span class="line">					<span class="keyword">if</span> (search(board, rword, i, j)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">					board[i][j] = word[<span class="number">0</span>];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">search</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt; &amp;board, <span class="built_in">string</span> &amp;word, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (word.size() == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">char</span> c = word.back();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> &amp;d : dirs) &#123;</span><br><span class="line">			<span class="keyword">if</span> (isValid(board, c, i + d[<span class="number">0</span>], j + d[<span class="number">1</span>])) &#123;</span><br><span class="line">				board[i + d[<span class="number">0</span>]][j + d[<span class="number">1</span>]] = <span class="string">'.'</span>;</span><br><span class="line">				word.pop_back();</span><br><span class="line">				<span class="keyword">if</span> (search(board, word, i + d[<span class="number">0</span>], j + d[<span class="number">1</span>])) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">				word.push_back(c);</span><br><span class="line">				board[i + d[<span class="number">0</span>]][j + d[<span class="number">1</span>]] = c;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">isValid</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt; &amp;board, <span class="keyword">char</span> c, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (i &gt;= <span class="number">0</span> &amp;&amp; i &lt; board.size() &amp;&amp; j &gt;= <span class="number">0</span> &amp;&amp; j &lt; board[<span class="number">0</span>].size())</span><br><span class="line">			<span class="keyword">return</span> board[i][j] == c;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution_1</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dailyTemperatures(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; T) &#123;</span><br><span class="line">		<span class="keyword">int</span> n = T.size();</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(n);</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; lastpos(<span class="number">101</span>, n);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">			<span class="keyword">int</span> wi = n;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = T[i] + <span class="number">1</span>; j &lt;= <span class="number">100</span>; ++j) &#123;</span><br><span class="line">				<span class="keyword">if</span> (lastpos[j] &lt; wi) wi = lastpos[j];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (wi &lt; n) res[i] = wi - i;</span><br><span class="line">			lastpos[T[i]] = i;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution_2</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dailyTemperatures(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; T) &#123;</span><br><span class="line">		<span class="keyword">int</span> n = T.size();</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(n, <span class="number">0</span>);</span><br><span class="line">		<span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; st;</span><br><span class="line">        <span class="comment">//栈中会保存相同元素多次</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; T.size(); ++i) &#123;</span><br><span class="line">			<span class="keyword">while</span> (!st.empty() &amp;&amp; T[i] &gt; T[st.top()]) &#123;</span><br><span class="line">				<span class="keyword">auto</span> t = st.top(); st.pop();</span><br><span class="line">				res[t] = i - t;</span><br><span class="line">			&#125;</span><br><span class="line">			st.push(i);</span><br><span class="line">		&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//栈中相同温度只存一个</span></span><br><span class="line">        <span class="comment">//for (int i = n - 1; i &gt;= 0; --i) &#123;</span></span><br><span class="line">		<span class="comment">//	while (!st.empty() &amp;&amp; T[i] &gt;= T[st.top()]) st.pop();</span></span><br><span class="line">		<span class="comment">//	if (st.empty()) res[i] = 0;</span></span><br><span class="line">		<span class="comment">//	else res[i] = st.top() - i;</span></span><br><span class="line">		<span class="comment">//	st.push(i);</span></span><br><span class="line">		<span class="comment">//&#125;</span></span><br><span class="line">        </span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -432,8 +426,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/08/Leetcode-63/" rel="next" title="Leetcode-63 Unique Paths II">
-                <i class="fa fa-chevron-left"></i> Leetcode-63 Unique Paths II
+              <a href="/2020/04/15/Leetcode-406/" rel="next" title="Leetcode-406 Queue Reconstruction by Height">
+                <i class="fa fa-chevron-left"></i> Leetcode-406 Queue Reconstruction by Height
               </a>
             
           </div>
@@ -441,10 +435,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/10/Leetcode-94/" rel="prev" title="Leetcode-94 Binary Tree Inorder Traversal">
-                Leetcode-94 Binary Tree Inorder Traversal <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -622,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Word-Search"><span class="nav-text">Word Search</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-text">Example 1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度分析"><span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Daily-Temperatures"><span class="nav-text">Daily Temperatures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度分析"><span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>
